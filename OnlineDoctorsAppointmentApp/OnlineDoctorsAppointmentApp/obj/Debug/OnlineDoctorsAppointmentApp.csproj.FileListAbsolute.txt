@@ -50,6 +50,5 @@ D:\Faisal2014000009\ODA\OnlineDoctorsAppointmentApp\OnlineDoctorsAppointmentApp\
 D:\Faisal2014000009\ODA\OnlineDoctorsAppointmentApp\OnlineDoctorsAppointmentApp\bin\Microsoft.Owin.Security.Google.xml
 D:\Faisal2014000009\ODA\OnlineDoctorsAppointmentApp\OnlineDoctorsAppointmentApp\bin\Microsoft.Owin.Security.Twitter.xml
 D:\Faisal2014000009\ODA\OnlineDoctorsAppointmentApp\OnlineDoctorsAppointmentApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-D:\Faisal2014000009\ODA\OnlineDoctorsAppointmentApp\OnlineDoctorsAppointmentApp\obj\Debug\OnlineDoctorsAppointmentApp.csprojResolveAssemblyReference.cache
 D:\Faisal2014000009\ODA\OnlineDoctorsAppointmentApp\OnlineDoctorsAppointmentApp\obj\Debug\OnlineDoctorsAppointmentApp.dll
 D:\Faisal2014000009\ODA\OnlineDoctorsAppointmentApp\OnlineDoctorsAppointmentApp\obj\Debug\OnlineDoctorsAppointmentApp.pdb
