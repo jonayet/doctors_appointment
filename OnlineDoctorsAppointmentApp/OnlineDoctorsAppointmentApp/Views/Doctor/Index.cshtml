@@ -12,9 +12,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Chamber.Location)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.DoctorName)
         </th>
         <th>
@@ -36,7 +33,7 @@
             @Html.DisplayNameFor(model => model.Password)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ImageName)
+            @Html.DisplayNameFor(model => model.ImagePath)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DoctorFee)
@@ -46,9 +43,6 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Chamber.Location)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.DoctorName)
         </td>
@@ -71,7 +65,7 @@
             @Html.DisplayFor(modelItem => item.Password)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ImageName)
+            @Html.DisplayFor(modelItem => item.ImagePath)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DoctorFee)

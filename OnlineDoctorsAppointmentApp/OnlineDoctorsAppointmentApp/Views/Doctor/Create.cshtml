@@ -7,7 +7,7 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm("Create", "Doctor", null, FormMethod.Post, new {enctype ="multipart/form-data"})) 
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
@@ -72,20 +72,14 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.ImageName, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ImageName)
-                @Html.ValidationMessageFor(model => model.ImageName)
-            </div>
-        </div>*@
         <div class="form-group">
-            @Html.LabelFor(model => model.ImageName, "Image", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ImagePath, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="file" name="imageFile" id="imageFile" value="Browse" />
-                <img src="" id="imageView" width="150" height="100" />
+                @Html.EditorFor(model => model.ImagePath)
+                @Html.ValidationMessageFor(model => model.ImagePath)
             </div>
         </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.DoctorFee, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -94,46 +88,13 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.ChamberId, "ChamberId", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ChamberId", String.Empty)
-                @Html.ValidationMessageFor(model => model.ChamberId)
-            </div>
-        </div>*@
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
-                
             </div>
         </div>
-
     </div>
 }
-
-<script type="text/javascript">
-    $(function() {
-
-        function readURL(input) {
-
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function(e) {
-                    $('#imageView').attr('src', e.target.result);
-                };
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        $("#imageFile").change(function() {
-            readURL(this);
-        });
-    });
-    
-</script>
 
 <div>
     @Html.ActionLink("Back to List", "Index")

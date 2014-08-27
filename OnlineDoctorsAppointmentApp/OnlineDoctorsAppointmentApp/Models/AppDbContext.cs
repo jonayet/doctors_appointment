@@ -8,7 +8,7 @@ namespace OnlineDoctorsAppointmentApp.Models
 {
     public class AppDbContext:DbContext
     {
-        public AppDbContext(): base("AppDbConnectionString")
+        public AppDbContext() : base("AppDbConnectionString")
         {
             
         }
@@ -18,5 +18,7 @@ namespace OnlineDoctorsAppointmentApp.Models
         public DbSet<Patient> Patients { get; set; }
 
         public System.Data.Entity.DbSet<OnlineDoctorsAppointmentApp.Models.Chamber> Chambers { get; set; }
+
+        public System.Data.Entity.DbSet<OnlineDoctorsAppointmentApp.Models.FindViewDoctor> FindViewDoctors { get; set; }
     }
 }

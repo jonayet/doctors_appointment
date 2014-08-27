@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -18,8 +17,7 @@ namespace OnlineDoctorsAppointmentApp.Controllers
         // GET: /Doctor/
         public ActionResult Index()
         {
-            var doctors = db.Doctors.Include(d => d.Chamber);
-            return View(doctors.ToList());
+            return View(db.Doctors.ToList());
         }
 
         // GET: /Doctor/Details/5
@@ -40,7 +38,6 @@ namespace OnlineDoctorsAppointmentApp.Controllers
         // GET: /Doctor/Create
         public ActionResult Create()
         {
-            //ViewBag.ChamberId = new SelectList(db.Chambers, "ChamberId", "Location");
             return View();
         }
 
@@ -49,22 +46,15 @@ namespace OnlineDoctorsAppointmentApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="DoctorId,DoctorName,Degree,Specialization,DoctorEmail,DoctorPhone,UserName,Password,ImageName,DoctorFee")] Doctor doctor, HttpPostedFileBase imageFile)
+        public ActionResult Create([Bind(Include="DoctorId,DoctorName,Degree,Specialization,DoctorEmail,DoctorPhone,UserName,Password,ImagePath,DoctorFee")] Doctor doctor)
         {
             if (ModelState.IsValid)
             {
-                if (imageFile != null)
-                {
-                    imageFile.SaveAs(Path.Combine(Server.MapPath("~/Images/"), imageFile.FileName));
-                    doctor.ImageName = imageFile.FileName;
-                }
-                doctor.Chamber= new Chamber();
                 db.Doctors.Add(doctor);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            //ViewBag.ChamberId = new SelectList(db.Chambers, "ChamberId", "Location", doctor.ChamberId);
             return View(doctor);
         }
 
@@ -80,7 +70,6 @@ namespace OnlineDoctorsAppointmentApp.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ChamberId = new SelectList(db.Chambers, "ChamberId", "Location", doctor.ChamberId);
             return View(doctor);
         }
 
@@ -89,7 +78,7 @@ namespace OnlineDoctorsAppointmentApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="DoctorId,DoctorName,Degree,Specialization,DoctorEmail,DoctorPhone,UserName,Password,ImageName,DoctorFee,ChamberId")] Doctor doctor)
+        public ActionResult Edit([Bind(Include="DoctorId,DoctorName,Degree,Specialization,DoctorEmail,DoctorPhone,UserName,Password,ImagePath,DoctorFee")] Doctor doctor)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +86,6 @@ namespace OnlineDoctorsAppointmentApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ChamberId = new SelectList(db.Chambers, "ChamberId", "Location", doctor.ChamberId);
             return View(doctor);
         }
 

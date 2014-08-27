@@ -74,10 +74,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ImageName, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ImagePath, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ImageName)
-                @Html.ValidationMessageFor(model => model.ImageName)
+                @Html.EditorFor(model => model.ImagePath)
+                @Html.ValidationMessageFor(model => model.ImagePath)
             </div>
         </div>
 
@@ -86,14 +86,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DoctorFee)
                 @Html.ValidationMessageFor(model => model.DoctorFee)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ChamberId, "ChamberId", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ChamberId", String.Empty)
-                @Html.ValidationMessageFor(model => model.ChamberId)
             </div>
         </div>
 

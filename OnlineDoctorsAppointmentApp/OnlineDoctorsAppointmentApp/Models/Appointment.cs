@@ -8,9 +8,12 @@ namespace OnlineDoctorsAppointmentApp.Models
     public class Appointment
     {
         public int AppointmentId { get; set; }
-        public int PatientId { get; private set; }
-        public string ChamberOfAppointment { get; set; }
-        public int DoctorId { get;private set; }
+        public int ChamberId { get; set; }
+        public int DoctorId { get; set; }
+        public int PatientId { get; set; }
         public DateTime AppointmentTime { get; set; }
+        public bool IsAppointmentComplete { get; set; }
+        public bool IsAppointmentConfirm { get; set; }
+        public bool IsNotificationSubscribed { get; set; }
     }
 }
