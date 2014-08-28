@@ -13,6 +13,6 @@ namespace OnlineDoctorsAppointmentApp.Models
         public string Name { get; set; }
         public string Zone { get; set; }
         public string Address { get; set; }
-        public List<VisitingSession> VisitingSessions { get; set; }
+        public List<VisitingSessions> VisitingSessions { get; set; }
     }
 }

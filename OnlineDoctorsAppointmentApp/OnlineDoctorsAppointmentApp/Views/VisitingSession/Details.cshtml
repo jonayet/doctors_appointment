@@ -1,0 +1,58 @@
+﻿@model OnlineDoctorsAppointmentApp.Models.VisitingSession
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>VisitingSession</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DoctorId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DoctorId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChamberId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChamberId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxNoOfAppointments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaxNoOfAppointments)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.VisitingSessionId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
