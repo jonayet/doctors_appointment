@@ -9,7 +9,7 @@ namespace OnlineDoctorsAppointmentApp.Models
 {
     public class VisitingSession
     {
-        public int VisitingSessionsId { get; set; }
+        public int VisitingSessionId { get; set; }
         [Display(Name="Start Time")]
         public DateTime StartTime { get; set; }
         [Display(Name = "End Time")]

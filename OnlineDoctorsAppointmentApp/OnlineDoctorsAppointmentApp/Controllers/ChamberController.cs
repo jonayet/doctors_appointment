@@ -10,116 +10,107 @@ using OnlineDoctorsAppointmentApp.Models;
 
 namespace OnlineDoctorsAppointmentApp.Controllers
 {
-    public class VisitingSessionController : Controller
+    public class ChamberController : Controller
     {
         private AppDbContext db = new AppDbContext();
 
-        // GET: /VisitingSession/
+        // GET: /Chamber/
         public ActionResult Index()
         {
-            var visitingsessions = db.VisitingSessions.Include(v => v.Chambers).Include(v => v.Doctors);
-            return View(visitingsessions.ToList());
+            return View(db.Chambers.ToList());
         }
 
-        // GET: /VisitingSession/Details/5
+        // GET: /Chamber/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VisitingSession visitingsession = db.VisitingSessions.Find(id);
-            if (visitingsession == null)
+            Chamber chamber = db.Chambers.Find(id);
+            if (chamber == null)
             {
                 return HttpNotFound();
             }
-            return View(visitingsession);
+            return View(chamber);
         }
 
-        // GET: /VisitingSession/Create
+        // GET: /Chamber/Create
         public ActionResult Create()
         {
-            ViewBag.ChamberId = new SelectList(db.Chambers, "ChamberId", "Name");
-            ViewBag.DoctorId = new SelectList(db.Doctors, "DoctorId", "DoctorName");
             return View();
         }
 
-        // POST: /VisitingSession/Create
+        // POST: /Chamber/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="VisitingSessionId,StartTime,EndTime,ChamberId,DoctorId,MaxNoOfAppointments")] VisitingSession visitingsession)
+        public ActionResult Create([Bind(Include="ChamberId,Name,Zone,Address")] Chamber chamber)
         {
             if (ModelState.IsValid)
             {
-                db.VisitingSessions.Add(visitingsession);
+                db.Chambers.Add(chamber);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ChamberId = new SelectList(db.Chambers, "ChamberId", "Name", visitingsession.ChamberId);
-            ViewBag.DoctorId = new SelectList(db.Doctors, "DoctorId", "DoctorName", visitingsession.DoctorId);
-            return View(visitingsession);
+            return View(chamber);
         }
 
-        // GET: /VisitingSession/Edit/5
+        // GET: /Chamber/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VisitingSession visitingsession = db.VisitingSessions.Find(id);
-            if (visitingsession == null)
+            Chamber chamber = db.Chambers.Find(id);
+            if (chamber == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ChamberId = new SelectList(db.Chambers, "ChamberId", "Name", visitingsession.ChamberId);
-            ViewBag.DoctorId = new SelectList(db.Doctors, "DoctorId", "DoctorName", visitingsession.DoctorId);
-            return View(visitingsession);
+            return View(chamber);
         }
 
-        // POST: /VisitingSession/Edit/5
+        // POST: /Chamber/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="VisitingSessionId,StartTime,EndTime,ChamberId,DoctorId,MaxNoOfAppointments")] VisitingSession visitingsession)
+        public ActionResult Edit([Bind(Include="ChamberId,Name,Zone,Address")] Chamber chamber)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(visitingsession).State = EntityState.Modified;
+                db.Entry(chamber).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ChamberId = new SelectList(db.Chambers, "ChamberId", "Name", visitingsession.ChamberId);
-            ViewBag.DoctorId = new SelectList(db.Doctors, "DoctorId", "DoctorName", visitingsession.DoctorId);
-            return View(visitingsession);
+            return View(chamber);
         }
 
-        // GET: /VisitingSession/Delete/5
+        // GET: /Chamber/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VisitingSession visitingsession = db.VisitingSessions.Find(id);
-            if (visitingsession == null)
+            Chamber chamber = db.Chambers.Find(id);
+            if (chamber == null)
             {
                 return HttpNotFound();
             }
-            return View(visitingsession);
+            return View(chamber);
         }
 
-        // POST: /VisitingSession/Delete/5
+        // POST: /Chamber/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            VisitingSession visitingsession = db.VisitingSessions.Find(id);
-            db.VisitingSessions.Remove(visitingsession);
+            Chamber chamber = db.Chambers.Find(id);
+            db.Chambers.Remove(chamber);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
