@@ -15,10 +15,8 @@ namespace OnlineDoctorsAppointmentApp.Models
 
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
-        public DbSet<Patient> Patients { get; set; }
-
-        public System.Data.Entity.DbSet<OnlineDoctorsAppointmentApp.Models.Chamber> Chambers { get; set; }
-
-        public System.Data.Entity.DbSet<OnlineDoctorsAppointmentApp.Models.FindViewDoctor> FindViewDoctors { get; set; }
+        public DbSet<Chamber> Chambers { get; set; }
+        public DbSet<VisitingSession> VisitingSessions { get; set; } 
+      
     }
 }

@@ -170,7 +170,6 @@
     <Compile Include="Models\Chamber.cs" />
     <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\VisitingSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
