@@ -15,23 +15,7 @@
         <h4>VisitingSession</h4>
         <hr />
         @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.VisitingSessionId)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DoctorId, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DoctorId)
-                @Html.ValidationMessageFor(model => model.DoctorId)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ChamberId, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ChamberId)
-                @Html.ValidationMessageFor(model => model.ChamberId)
-            </div>
-        </div>
+        @Html.HiddenFor(model => model.VisitingSessionsId)
 
         <div class="form-group">
             @Html.LabelFor(model => model.StartTime, new { @class = "control-label col-md-2" })
@@ -46,6 +30,22 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.EndTime)
                 @Html.ValidationMessageFor(model => model.EndTime)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ChamberId, "ChamberId", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ChamberId", String.Empty)
+                @Html.ValidationMessageFor(model => model.ChamberId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DoctorId, "DoctorId", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("DoctorId", String.Empty)
+                @Html.ValidationMessageFor(model => model.DoctorId)
             </div>
         </div>
 

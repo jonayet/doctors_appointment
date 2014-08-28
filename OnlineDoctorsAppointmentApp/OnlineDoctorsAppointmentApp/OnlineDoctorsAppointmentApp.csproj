@@ -161,6 +161,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\VisitingSessionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -170,7 +171,7 @@
     <Compile Include="Models\Chamber.cs" />
     <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\VisitingSessions.cs" />
+    <Compile Include="Models\VisitingSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -225,6 +226,11 @@
     <Content Include="Views\Doctor\Details.cshtml" />
     <Content Include="Views\Doctor\Edit.cshtml" />
     <Content Include="Views\Doctor\Index.cshtml" />
+    <Content Include="Views\VisitingSession\Create.cshtml" />
+    <Content Include="Views\VisitingSession\Delete.cshtml" />
+    <Content Include="Views\VisitingSession\Details.cshtml" />
+    <Content Include="Views\VisitingSession\Edit.cshtml" />
+    <Content Include="Views\VisitingSession\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
