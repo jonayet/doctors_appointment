@@ -46,10 +46,15 @@ namespace OnlineDoctorsAppointmentApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="DoctorId,DoctorName,Degree,Specialization,DoctorEmail,DoctorPhone,UserName,Password,ImagePath,DoctorFee")] Doctor doctor)
+        public ActionResult Create([Bind(Include="DoctorId,DoctorName,Degree,Specialization,DoctorEmail,DoctorPhone,UserName,Password,ImagePath,DoctorFee")] Doctor doctor, HttpPostedFileBase imageFile)
         {
             if (ModelState.IsValid)
             {
+                if (imageFile != null)
+                {
+                    imageFile.SaveAs(HttpContext.Server.MapPath("~/ /" + imageFile.FileName));
+                    doctor.ImagePath = imageFile.FileName;
+                }
                 db.Doctors.Add(doctor);
                 db.SaveChanges();
                 return RedirectToAction("Index");
