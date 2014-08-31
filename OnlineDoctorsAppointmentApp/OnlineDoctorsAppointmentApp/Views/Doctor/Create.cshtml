@@ -85,10 +85,14 @@
             @Html.LabelFor(model => model.ImagePath, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <input type="file" name="imageFile" id="imageFile" />
+               <p></p>
+                <img id="imageView" src="#" width="200" height="200" />
             </div>
         </div>
+        
+        
 
-            <div class="form-group">
+        <div class="form-group">
                 @Html.LabelFor(model => model.DoctorFee, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.DoctorFee)
@@ -104,10 +108,29 @@
         </div>
     }
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
+<script>
+    function readURL(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#imageView').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
     }
+
+    $("#imageFile").change(function () {
+        readURL(this);
+    });
+    
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
