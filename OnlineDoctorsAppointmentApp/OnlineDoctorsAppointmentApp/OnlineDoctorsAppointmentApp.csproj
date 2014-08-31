@@ -162,6 +162,7 @@
     <Compile Include="Controllers\ChamberController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SearchDoctorController.cs" />
     <Compile Include="Controllers\VisitingSessionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -239,6 +240,8 @@
     <Content Include="Views\Chamber\Details.cshtml" />
     <Content Include="Views\Chamber\Edit.cshtml" />
     <Content Include="Views\Chamber\Index.cshtml" />
+    <Content Include="Views\SearchDoctor\Index.cshtml" />
+    <Content Include="Views\SearchDoctor\SearchDoctor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
