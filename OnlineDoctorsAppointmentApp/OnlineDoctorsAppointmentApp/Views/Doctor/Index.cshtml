@@ -65,7 +65,7 @@
             @Html.DisplayFor(modelItem => item.Password)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ImagePath)
+            <img src="@Url.Content("~/Images/" + item.ImagePath)" height=100 width=100 />
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DoctorFee)
