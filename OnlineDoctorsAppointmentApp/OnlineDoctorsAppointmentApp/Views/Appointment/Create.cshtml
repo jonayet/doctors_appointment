@@ -1,0 +1,67 @@
+﻿@model OnlineDoctorsAppointmentApp.Models.Appointment
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Appointment</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+
+        <div class="form-group">
+            @Html.Label("Doctor Name", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Appointment Time", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Patient Name", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PatientName)
+                @Html.ValidationMessageFor(model => model.PatientName)
+                @if (TempData["message"] != null)
+                {
+                    @TempData["message"]
+                }
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Patient Phone", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PatientPhone)
+                @Html.ValidationMessageFor(model => model.PatientPhone)
+                @if (TempData["message"] != null)
+                {
+                    @TempData["message"]
+                }
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Address", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ChamberId)
+                @Html.ValidationMessageFor(model => model.ChamberId)
+                @if (TempData["message"] != null)
+                {
+                    @TempData["message"]
+                }
+            </div>
+        </div>
+    </div>
+}
