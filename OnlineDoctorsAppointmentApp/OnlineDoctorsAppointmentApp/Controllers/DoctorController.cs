@@ -52,7 +52,7 @@ namespace OnlineDoctorsAppointmentApp.Controllers
             {
                 if (imageFile != null)
                 {
-                    imageFile.SaveAs(HttpContext.Server.MapPath("~/ /" + imageFile.FileName));
+                    imageFile.SaveAs(HttpContext.Server.MapPath("~/Images/" + imageFile.FileName));
                     doctor.ImagePath = imageFile.FileName;
                 }
                 db.Doctors.Add(doctor);
