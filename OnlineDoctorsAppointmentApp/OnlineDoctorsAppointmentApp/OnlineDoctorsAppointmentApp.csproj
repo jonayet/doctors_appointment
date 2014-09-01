@@ -243,6 +243,7 @@
     <Content Include="Views\Chamber\Index.cshtml" />
     <Content Include="Views\SearchDoctor\Index.cshtml" />
     <Content Include="Views\SearchDoctor\SearchDoctor.cshtml" />
+    <Content Include="Views\Appointment\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
