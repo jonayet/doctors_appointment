@@ -1,70 +1,85 @@
 ﻿@model OnlineDoctorsAppointmentApp.Models.Appointment
+
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create Appoinment";
+
 }
 
-<h2>Create</h2>
+<h2>Create Appoinment</h2>
 
-@using (Html.BeginForm())
+
+@using (Html.BeginForm("Create", "Appointment", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Appointment</h4>
-        <hr />
+        
         @Html.ValidationSummary(true)
 
-
         <div class="form-group">
-            @Html.Label("Doctor Name", new { @class = "control-label col-md-2" })
+            @Html.Label("Doctor Name:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-
-
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label("Appointment Time", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-
             </div>
         </div>
         
-        
-
+        <div class="form-group">
+            @Html.Label("Appointment Time:", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+            </div>
+        </div>
         
         <div class="form-group">
-            @Html.Label("Patient Name", new { @class = "control-label col-md-2" })
+            @Html.Label("Serial No:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PatientName)
+            </div>
+        </div>
+        
+        @*patient name entry*@
+
+        <div class="form-group">
+            @Html.Label("Patient Name:", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("patientName")
                 @Html.ValidationMessageFor(model => model.PatientName)
-                @if (TempData["message"] != null)
-                {
-                    @TempData["message"]
-                }
             </div>
         </div>
+ 
+        @*Patient Phone No entry*@
+        
         <div class="form-group">
-            @Html.Label("Patient Phone", new { @class = "control-label col-md-2" })
+            @Html.Label("Phone No:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PatientPhone)
+                @Html.Editor("patientPhone")
                 @Html.ValidationMessageFor(model => model.PatientPhone)
-                @if (TempData["message"] != null)
-                {
-                    @TempData["message"]
-                }
+            </div>
+        </div>
+        
+        
+        @*patient email entry*@
+        
+        <div class="form-group">
+            @Html.Label("Email:", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("patientEmail")
+                @Html.ValidationMessageFor(model => model.PatientEmail)
+            </div>
+        </div>
+        
+        @*patient Address entry*@
+        
+        <div class="form-group">
+            @Html.Label("Address:", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("patientLocation")
+                @Html.ValidationMessageFor(model => model.PatientEmail)
             </div>
         </div>
 
+
+
         <div class="form-group">
-            @Html.Label("Address", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ChamberId)
-                @Html.ValidationMessageFor(model => model.ChamberId)
-                @if (TempData["message"] != null)
-                {
-                    @TempData["message"]
-                }
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
