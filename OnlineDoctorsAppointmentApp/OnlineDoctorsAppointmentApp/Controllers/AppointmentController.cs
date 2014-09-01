@@ -11,9 +11,11 @@ namespace OnlineDoctorsAppointmentApp.Controllers
     {
         AppDbContext db = new AppDbContext();
 
-        public ActionResult Index()
+        public ActionResult Index(int? doctorId)
         {
-            return View();
+            List<Appointment> appointments = new List<Appointment>();
+            appointments = db.Appointments.Where(a => a.DoctorId == doctorId).ToList();
+            return View(appointments);
         }
 
         [HttpGet]
@@ -41,6 +43,11 @@ namespace OnlineDoctorsAppointmentApp.Controllers
 
             db.Appointments.Add(appointment);
             return View();
+        }
+
+        public ActionResult Details(int appointmentid)
+        {
+            // Details to be created
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<OnlineDoctorsAppointmentApp.Models.Appointment>
+﻿@using System.Web.Mvc.Html
+@model IEnumerable<OnlineDoctorsAppointmentApp.Models.Appointment>
 
 @{
     Layout = null;
@@ -8,11 +9,45 @@
 
 <html>
     <head>
-        <title>Appoinments</title>
+        <title>Your Appoinments</title>
     </head>
     <body>
-        <div>
-              
-        </div>
+        
+        <table class="table">
+            <tr>
+                <th>Time</th>
+                <th>Serial No.</th>
+                <th>Patient Name</th>
+                <th>Phone No.</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem=>item.AppointmentTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppointmentId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PatientName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PatientPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PatientEmail)
+        </td>
+        <td>
+            @Html.ActionLink("Details","Details",new {appointmentId=item.AppointmentId})
+        </td>
+    </tr>
+}
+
+        </table>
+
+
     </body>
 </html>
