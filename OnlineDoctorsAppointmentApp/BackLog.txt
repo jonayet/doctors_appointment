@@ -1,1 +1,2 @@
-New assignmenyt
+New assignment
+resolving conflict
