@@ -9,10 +9,10 @@ namespace OnlineDoctorsAppointmentApp.Models
     public class Doctor
     {
         public int DoctorId { get; set; }
+        
         [Required]
         [Display (Name = "Doctor's Name")]
         public string DoctorName { get; set; }
-
         public string Degree { get; set; }
 
         [Required]
@@ -24,7 +24,7 @@ namespace OnlineDoctorsAppointmentApp.Models
         public string DoctorEmail { get; set; }
 
         [DataType(DataType.PhoneNumber)]
-        [Display(Name = "Doctor's phone")]
+        [Display(Name = "Doctor's Phone")]
         [Required]
         public string DoctorPhone { get; set; }
 
