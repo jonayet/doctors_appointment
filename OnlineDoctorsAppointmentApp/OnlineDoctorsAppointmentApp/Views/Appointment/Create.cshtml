@@ -74,6 +74,16 @@
                 @Html.ValidationMessageFor(model => model.PatientEmail)
             </div>
         </div>
+        
+        @*notificaction subscribe textbox*@
+
+        <div class="form-group">
+            @Html.Label("Subscribe for Notification:", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBox("isNotificationSubscribed")
+            </div>
+        </div>
+        
 
 
 
