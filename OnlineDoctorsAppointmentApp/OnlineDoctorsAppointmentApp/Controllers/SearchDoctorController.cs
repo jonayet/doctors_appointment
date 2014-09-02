@@ -70,7 +70,7 @@ namespace OnlineDoctorsAppointmentApp.Controllers
                             || vs.Chambers.Name.Contains(searchTextbox) || vs.Chambers.Zone.Contains(searchTextbox))
                         .ToList();
                 }
-
+                ViewBag.NoOfAppoinments = adoctorList[0].AppointmentList.Count;
                 ViewBag.doctorList = adoctorList;
             }
             return View();

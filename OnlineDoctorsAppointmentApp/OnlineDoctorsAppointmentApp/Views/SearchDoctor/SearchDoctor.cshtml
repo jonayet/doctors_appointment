@@ -27,7 +27,10 @@
             Visiting Time
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MaxNoOfAppointments)
+            No. Of Available Seat
+        </th>
+        <th>
+            Action
         </th>
         <th></th>
     </tr>
@@ -51,12 +54,18 @@
                 @Html.DisplayFor(modelItem => item.StartTime)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MaxNoOfAppointments)
+                @{
+                    int no = item.MaxNoOfAppointments - ViewBag.NoOfAppoinments;
+                }
+                @no
+
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.VisitingSessionId }) |
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.VisitingSessionId }) |
                 @Html.ActionLink("Details", "Details", new { id = item.VisitingSessionId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.VisitingSessionId })
+                @Html.ActionLink("Delete", "Delete", new { id = item.VisitingSessionId })*@
+                
+                <input id="appointmentButton" type="button" value="Confirm" /> 
             </td>
         </tr>
     }
