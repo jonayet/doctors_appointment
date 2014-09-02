@@ -28,7 +28,7 @@ namespace OnlineDoctorsAppointmentApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(int? DoctorId, int? SpecializationId, int? ChamberId, int? ChamberZone, DateTime dateSearchTextbox, string searchTextbox)
+        public ActionResult Index(int? DoctorId, int? SpecializationId, int? ChamberId, int? ChamberZone, DateTime? dateSearchTextbox, string searchTextbox)
         {
             ViewBag.ChamberId = new SelectList(db.Chambers, "ChamberId", "Name");
             ViewBag.ChamberZone = new SelectList(db.Chambers, "ChamberId", "Zone");
@@ -56,22 +56,20 @@ namespace OnlineDoctorsAppointmentApp.Controllers
                     string area = db.Chambers.Find(ChamberZone).Zone;
                     adoctorList = db.VisitingSessions.Where(c => c.Chambers.Zone.Contains(area)).ToList();
                 }
-                //else if (dateSearchTextbox)
-                //{
-                //    adoctorList = db.VisitingSessions.Where(c => c.StartTime == dateSearchTextbox).ToList();
-                //}
+                else if(dateSearchTextbox != null)
+                {
+                    adoctorList = db.VisitingSessions.Where(c => c.StartTime == dateSearchTextbox).ToList();
+                }
                 else if (searchTextbox != null)
                 {
-                    List<Doctor> matchedDoctors = db.Doctors.Where(
-                        d => d.DoctorName.Contains(searchTextbox) || d.Specialization.Contains(searchTextbox)).ToList();
 
-                    var search = db.VisitingSessions.Where(
-                        vs => vs.Doctors.DoctorName.Contains(searchTextbox) || vs.Doctors.Specialization.Contains(searchTextbox)
-                            || vs.Chambers.Name.Contains(searchTextbox) || vs.Chambers.Zone.Contains(searchTextbox));
-                    
-                    adoctorList = db.VisitingSessions.Where(c => c.Chambers.Name.Contains(searchTextbox)).ToList();
+                    adoctorList = db.VisitingSessions.Where(
+                        vs =>
+                            vs.Doctors.DoctorName.Contains(searchTextbox) ||
+                            vs.Doctors.Specialization.Contains(searchTextbox)
+                            || vs.Chambers.Name.Contains(searchTextbox) || vs.Chambers.Zone.Contains(searchTextbox))
+                        .ToList();
                 }
-
 
                 ViewBag.doctorList = adoctorList;
             }
