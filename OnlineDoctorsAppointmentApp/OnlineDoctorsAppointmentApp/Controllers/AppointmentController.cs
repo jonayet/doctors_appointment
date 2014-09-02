@@ -21,6 +21,14 @@ namespace OnlineDoctorsAppointmentApp.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            Doctor aDoctor=new Doctor();
+            aDoctor = db.Doctors.Find(1);
+            Chamber aChamber=new Chamber();
+            aChamber = db.Chambers.Find(1);
+            ViewBag.Doctor = aDoctor;
+            ViewBag.Chamber = aChamber;
+            ViewBag.SerialNo = 23;
+            ViewBag.AppointmentTime = "02/09/2014 10:00 AM";
             return View();
         }
 
