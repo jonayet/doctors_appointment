@@ -20,7 +20,7 @@ namespace OnlineDoctorsAppointmentApp.Controllers
             ViewBag.ChamberId = new SelectList(db.Chambers, "ChamberId", "Name");
             ViewBag.ChamberZone = new SelectList(db.Chambers, "ChamberId", "Zone");
             ViewBag.DoctorId = new SelectList(db.Doctors, "DoctorId", "DoctorName");
-            ViewBag.Specialization = new SelectList(db.Doctors, "DoctorId", "Specialization");
+            ViewBag.SpecializationId = new SelectList(db.Doctors, "DoctorId", "Specialization");
             var doctors = db.VisitingSessions.Include(v => v.Chambers).Include(v => v.Doctors);
             ViewBag.doctorList = doctors.ToList();
             return View(new VisitingSession());
@@ -28,12 +28,12 @@ namespace OnlineDoctorsAppointmentApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(int? DoctorId, string Specialization, int? ChamberId, string ChamberZone, string dateSearchTextbox, string searchTextbox)
+        public ActionResult Index(int? DoctorId, int? SpecializationId, int? ChamberId, string ChamberZone, string dateSearchTextbox, string searchTextbox)
         {
             ViewBag.ChamberId = new SelectList(db.Chambers, "ChamberId", "Name");
             ViewBag.ChamberZone = new SelectList(db.Chambers, "ChamberId", "Zone");
             ViewBag.DoctorId = new SelectList(db.Doctors, "DoctorId", "DoctorName");
-            ViewBag.Specialization = new SelectList(db.Doctors, "DoctorId", "Specialization");
+            ViewBag.SpecializationId = new SelectList(db.Doctors, "DoctorId", "Specialization");
 
             List<VisitingSession> adoctorList = new List<VisitingSession>();
             if (ModelState.IsValid)
@@ -42,9 +42,10 @@ namespace OnlineDoctorsAppointmentApp.Controllers
                 {
                     adoctorList = db.VisitingSessions.Where(c => c.Doctors.DoctorId == DoctorId).ToList();
                 }
-                else if (Specialization != string.Empty)
+                else if (SpecializationId != null)
                 {
-                    adoctorList = db.VisitingSessions.Where(c => c.Doctors.Specialization.Contains(Specialization)).ToList();
+                    string specialization = db.Doctors.Find(SpecializationId).Specialization;
+                    adoctorList = db.VisitingSessions.Where(c => c.Doctors.Specialization.Contains(specialization)).ToList();
                 }
                 else if (ChamberId != null)
                 {
