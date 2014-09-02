@@ -10,6 +10,8 @@ namespace OnlineDoctorsAppointmentApp.Controllers
     public class AppointmentController : Controller
     {
         AppDbContext db = new AppDbContext();
+        private Doctor aDoctor;
+        private Chamber aChamber;
 
         public ActionResult Index(int? doctorId)
         {
@@ -18,31 +20,32 @@ namespace OnlineDoctorsAppointmentApp.Controllers
             return View(appointments);
         }
 
+
+
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            aDoctor = new Doctor();
+            aDoctor = db.Doctors.Find(1);
+            aChamber = new Chamber();
+            aChamber = db.Chambers.Find(1);
+            ViewBag.SelDoctor = aDoctor;
+            ViewBag.SelChamber = aChamber;
+            ViewBag.SerialNo = 23;
+            ViewBag.AppointmentTime = "02/09/2014 10:00 AM";
+
+            Appointment anAppointment = new Appointment();
+            return View(anAppointment);
         }
 
 
         [HttpPost]
-        public ActionResult Create(int chamberId, int doctorId, string patientName, string patientPhone, string patientEmail, DateTime appointmenTime, bool isNotificationSubscribed)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Appointment anAppointment)
         {
-            Appointment appointment = new Appointment()
-            {
-                AppointmentTime = appointmenTime,
-                ChamberId = chamberId,
-                DoctorId = doctorId,
-                PatientName = patientName,
-                PatientEmail = patientEmail,
-                PatientPhone = patientPhone,
-                IsNotificationSubscribed = isNotificationSubscribed,
-                IsAppointmentComplete = false,
-                IsAppointmentConfirm = false
-            };
-
-            db.Appointments.Add(appointment);
-            return View();
+            db.Appointments.Add(anAppointment);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         //public ActionResult Details(int appointmentid)

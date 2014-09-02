@@ -1,4 +1,5 @@
 ﻿@model OnlineDoctorsAppointmentApp.Models.Appointment
+@using OnlineDoctorsAppointmentApp.Models;
 
 @{
     ViewBag.Title = "Create Appoinment";
@@ -8,29 +9,33 @@
 <h2>Create Appoinment</h2>
 
 
-@using (Html.BeginForm("Create", "Appointment", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Create", "Appointment", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
         
-        @Html.ValidationSummary(true)
+        @Html.ValidationSummary(true)        
+        
 
         <div class="form-group">
             @Html.Label("Doctor Name:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+             @ViewBag.SelDoctor.DoctorName
             </div>
         </div>
         
         <div class="form-group">
             @Html.Label("Appointment Time:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+                @ViewBag.AppointmentTime
             </div>
         </div>
         
         <div class="form-group">
             @Html.Label("Serial No:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+                @ViewBag.SerialNo
             </div>
         </div>
         
@@ -39,7 +44,7 @@
         <div class="form-group">
             @Html.Label("Patient Name:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.Editor("patientName")
+                @Html.EditorFor(model => model.PatientName)
                 @Html.ValidationMessageFor(model => model.PatientName)
             </div>
         </div>
@@ -49,7 +54,7 @@
         <div class="form-group">
             @Html.Label("Phone No:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.Editor("patientPhone")
+                @Html.EditorFor(model => model.PatientPhone)
                 @Html.ValidationMessageFor(model => model.PatientPhone)
             </div>
         </div>
@@ -60,32 +65,36 @@
         <div class="form-group">
             @Html.Label("Email:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.Editor("patientEmail")
+                @Html.EditorFor(model => model.PatientEmail)
                 @Html.ValidationMessageFor(model => model.PatientEmail)
             </div>
         </div>
+        
+
         
         @*patient Address entry*@
         
         <div class="form-group">
             @Html.Label("Address:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.Editor("patientLocation")
+                @Html.EditorFor(model => model.PatientEmail)
                 @Html.ValidationMessageFor(model => model.PatientEmail)
             </div>
         </div>
         
         @*notificaction subscribe textbox*@
-
         <div class="form-group">
             @Html.Label("Subscribe for Notification:", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.CheckBox("isNotificationSubscribed")
-            </div>
+            @Html.CheckBoxFor(model => model.IsNotificationSubscribed)
+            @Html.ValidationMessageFor(model => model.IsNotificationSubscribed)
         </div>
         
+        
+        @*passing DoctorId,ChamberId,AppointmentTime (from the search controller) to controller*@
 
-
+        <input type="text" name="DoctorId" value='@ViewBag.SelDoctor.DoctorId' hidden="hidden" />
+        <input type="text" name="ChamberId" value="@ViewBag.SelChamber.ChamberId" hidden="hidden" />
+        <input type="text" name="AppointmentTime" value="@ViewBag.AppointmentTime" hidden="hidden" />
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
