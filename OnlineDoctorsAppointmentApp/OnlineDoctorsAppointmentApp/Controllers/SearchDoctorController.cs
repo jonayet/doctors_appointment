@@ -22,7 +22,8 @@ namespace OnlineDoctorsAppointmentApp.Controllers
             ViewBag.DoctorId = new SelectList(db.Doctors, "DoctorId", "DoctorName");
             ViewBag.Specialization = new SelectList(db.Doctors, "DoctorId", "Specialization");
             var doctors = db.VisitingSessions.Include(v => v.Chambers).Include(v => v.Doctors);
-            return View(doctors.ToList());
+            ViewBag.doctorList = doctors.ToList();
+            return View(new VisitingSession());
         }
 
         [HttpPost]
@@ -39,7 +40,7 @@ namespace OnlineDoctorsAppointmentApp.Controllers
             {
                 if (DoctorId != null)
                 {
-                    adoctorList = db.VisitingSessions.Where(c => c.DoctorId == DoctorId).ToList();
+                    adoctorList = db.VisitingSessions.Where(c => c.Doctors.DoctorId == DoctorId).ToList();
                 }
                 else if (Specialization != null)
                 {
@@ -47,7 +48,7 @@ namespace OnlineDoctorsAppointmentApp.Controllers
                 }
                 else if (ChamberId != null)
                 {
-                    adoctorList = db.VisitingSessions.Where(c => c.ChamberId == ChamberId).ToList();
+                    adoctorList = db.VisitingSessions.Where(c => c.Chambers.ChamberId == ChamberId).ToList();
                 }
                 else if (ChamberZone != null)
                 {
@@ -61,8 +62,10 @@ namespace OnlineDoctorsAppointmentApp.Controllers
                 {
                     adoctorList = db.VisitingSessions.Where(c => c.Chambers.Name.Contains(searchTextbox)).ToList();
                 }
+
+                ViewBag.doctorList = adoctorList;
             }
-            return View(adoctorList);
+            return View();
         }
 
     }
