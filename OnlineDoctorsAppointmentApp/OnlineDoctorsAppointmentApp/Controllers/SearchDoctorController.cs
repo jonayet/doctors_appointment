@@ -28,7 +28,7 @@ namespace OnlineDoctorsAppointmentApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(int? DoctorId, int? SpecializationId, int? ChamberId, string ChamberZone, string dateSearchTextbox, string searchTextbox)
+        public ActionResult Index(int? DoctorId, int? SpecializationId, int? ChamberId, int? ChamberZone, string dateSearchTextbox, string searchTextbox)
         {
             ViewBag.ChamberId = new SelectList(db.Chambers, "ChamberId", "Name");
             ViewBag.ChamberZone = new SelectList(db.Chambers, "ChamberId", "Zone");
@@ -51,9 +51,10 @@ namespace OnlineDoctorsAppointmentApp.Controllers
                 {
                     adoctorList = db.VisitingSessions.Where(c => c.Chambers.ChamberId == ChamberId).ToList();
                 }
-                else if (ChamberZone != string.Empty)
+                else if (ChamberZone != null)
                 {
-                    adoctorList = db.VisitingSessions.Where(c => c.Chambers.Zone.Contains(ChamberZone)).ToList();
+                    string area = db.Chambers.Find(ChamberZone).Zone;
+                    adoctorList = db.VisitingSessions.Where(c => c.Chambers.Zone.Contains(area)).ToList();
                 }
                 else if (dateSearchTextbox != null)
                 {
