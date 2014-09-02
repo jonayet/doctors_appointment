@@ -42,7 +42,7 @@ namespace OnlineDoctorsAppointmentApp.Controllers
                 {
                     adoctorList = db.VisitingSessions.Where(c => c.Doctors.DoctorId == DoctorId).ToList();
                 }
-                else if (Specialization != null)
+                else if (Specialization != string.Empty)
                 {
                     adoctorList = db.VisitingSessions.Where(c => c.Doctors.Specialization.Contains(Specialization)).ToList();
                 }
@@ -50,7 +50,7 @@ namespace OnlineDoctorsAppointmentApp.Controllers
                 {
                     adoctorList = db.VisitingSessions.Where(c => c.Chambers.ChamberId == ChamberId).ToList();
                 }
-                else if (ChamberZone != null)
+                else if (ChamberZone != string.Empty)
                 {
                     adoctorList = db.VisitingSessions.Where(c => c.Chambers.Zone.Contains(ChamberZone)).ToList();
                 }
