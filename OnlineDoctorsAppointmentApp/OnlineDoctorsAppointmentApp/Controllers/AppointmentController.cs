@@ -45,9 +45,10 @@ namespace OnlineDoctorsAppointmentApp.Controllers
             return View();
         }
 
-        public ActionResult Details(int appointmentid)
-        {
-            // Details to be created
-        }
+        //public ActionResult Details(int appointmentid)
+        //{
+        //    // Details to be created
+        //    return View();
+        //}
     }
 }
