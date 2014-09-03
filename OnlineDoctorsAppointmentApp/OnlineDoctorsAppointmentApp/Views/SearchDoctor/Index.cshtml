@@ -42,7 +42,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Chambers.Zone, "Location", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Chambers.Zone, "Area", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("ChamberZone", String.Empty)
                 @Html.ValidationMessageFor(model => model.Chambers.Zone)
@@ -50,7 +50,7 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Date", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.StartTime, "Date", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.Editor("dateSearchTextbox")
             </div>
