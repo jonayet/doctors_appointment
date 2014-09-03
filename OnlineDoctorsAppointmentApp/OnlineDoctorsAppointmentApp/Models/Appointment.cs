@@ -11,6 +11,7 @@ namespace OnlineDoctorsAppointmentApp.Models
         public int AppointmentId { get; set; }
         public int ChamberId { get; set; }
         public int DoctorId { get; set; }
+        public int VisitingSessionId { get; set; }
 
         [Required]
         [Display(Name="Patient Name")]
@@ -24,6 +25,9 @@ namespace OnlineDoctorsAppointmentApp.Models
         [Display(Name = "Email")]
         [DataType(DataType.EmailAddress)]
         public string PatientEmail { get; set; }
+
+        [Display(Name = "Address")]
+        public string PatientAddress { get; set; }
 
         [Display(Name = "Appointment Time")]
         public DateTime AppointmentTime { get; set; }

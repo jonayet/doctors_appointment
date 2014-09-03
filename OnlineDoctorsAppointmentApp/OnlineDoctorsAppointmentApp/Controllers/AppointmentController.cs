@@ -12,6 +12,7 @@ namespace OnlineDoctorsAppointmentApp.Controllers
         AppDbContext db = new AppDbContext();
         private Doctor aDoctor;
         private Chamber aChamber;
+        private VisitingSession aVisitingSession;
 
         public ActionResult Index(int? doctorId)
         {
@@ -25,12 +26,12 @@ namespace OnlineDoctorsAppointmentApp.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            aDoctor = new Doctor();
             aDoctor = db.Doctors.Find(1);
-            aChamber = new Chamber();
             aChamber = db.Chambers.Find(1);
-            ViewBag.SelDoctor = aDoctor;
-            ViewBag.SelChamber = aChamber;
+            aVisitingSession = db.VisitingSessions.Find(1);
+            ViewBag.SelectedDoctor = aDoctor;
+            ViewBag.SelectedChamber = aChamber;
+            ViewBag.SelectedVisitingSession = aVisitingSession;
             ViewBag.SerialNo = 23;
             ViewBag.AppointmentTime = "02/09/2014 10:00 AM";
 

@@ -20,7 +20,7 @@
         <div class="form-group">
             @Html.Label("Doctor Name:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-             @ViewBag.SelDoctor.DoctorName
+             @ViewBag.SelectedDoctor.DoctorName
 
             </div>
         </div>
@@ -77,8 +77,8 @@
         <div class="form-group">
             @Html.Label("Address:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PatientEmail)
-                @Html.ValidationMessageFor(model => model.PatientEmail)
+                @Html.EditorFor(model => model.PatientAddress)
+                @Html.ValidationMessageFor(model => model.PatientAddress)
             </div>
         </div>
         
@@ -92,8 +92,9 @@
         
         @*passing DoctorId,ChamberId,AppointmentTime (from the search controller) to controller*@
 
-        <input type="text" name="DoctorId" value='@ViewBag.SelDoctor.DoctorId' hidden="hidden" />
-        <input type="text" name="ChamberId" value="@ViewBag.SelChamber.ChamberId" hidden="hidden" />
+        <input type="text" name="DoctorId" value='@ViewBag.SelectedDoctor.DoctorId' hidden="hidden" />
+        <input type="text" name="ChamberId" value="@ViewBag.SelectedChamber.ChamberId" hidden="hidden" />
+        <input type="text" name="VisitingSessionId" value="@ViewBag.SelectedVisitingSession.VisitingSessionId" hidden="hidden" />
         <input type="text" name="AppointmentTime" value="@ViewBag.AppointmentTime" hidden="hidden" />
 
         <div class="form-group">
