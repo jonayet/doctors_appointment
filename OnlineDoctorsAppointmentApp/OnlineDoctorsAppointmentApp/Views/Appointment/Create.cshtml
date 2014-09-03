@@ -20,7 +20,7 @@
         <div class="form-group">
             @Html.Label("Doctor Name:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-             @ViewBag.SelectedDoctor.DoctorName
+                @ViewBag.SelectedDoctor.DoctorName
 
             </div>
         </div>
@@ -40,19 +40,25 @@
         </div>
         
         @*patient name entry*@
-
         <div class="form-group">
-            @Html.Label("Patient Name:", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(m => m.PatientName, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PatientName)
                 @Html.ValidationMessageFor(model => model.PatientName)
             </div>
         </div>
- 
-        @*Patient Phone No entry*@
         
         <div class="form-group">
-            @Html.Label("Phone No:", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(m => m.Problems, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Problems)
+                @Html.ValidationMessageFor(model => model.Problems)
+            </div>
+        </div>
+ 
+        @*Patient Phone No entry*@
+        <div class="form-group">
+            @Html.LabelFor(m => m.PatientPhone, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PatientPhone)
                 @Html.ValidationMessageFor(model => model.PatientPhone)
@@ -61,21 +67,17 @@
         
         
         @*patient email entry*@
-        
         <div class="form-group">
-            @Html.Label("Email:", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(m => m.PatientEmail, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PatientEmail)
                 @Html.ValidationMessageFor(model => model.PatientEmail)
             </div>
         </div>
         
-
-        
         @*patient Address entry*@
-        
         <div class="form-group">
-            @Html.Label("Address:", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(m => m.PatientAddress, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PatientAddress)
                 @Html.ValidationMessageFor(model => model.PatientAddress)
@@ -84,7 +86,7 @@
         
         @*notificaction subscribe textbox*@
         <div class="form-group">
-            @Html.Label("Subscribe for Notification:", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(m => m.IsNotificationSubscribed, new { @class = "control-label col-md-2" })
             @Html.CheckBoxFor(model => model.IsNotificationSubscribed)
             @Html.ValidationMessageFor(model => model.IsNotificationSubscribed)
         </div>

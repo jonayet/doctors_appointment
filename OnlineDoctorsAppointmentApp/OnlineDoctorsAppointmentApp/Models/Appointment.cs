@@ -17,6 +17,9 @@ namespace OnlineDoctorsAppointmentApp.Models
         [Display(Name="Patient Name")]
         public string PatientName { get; set; }
 
+        [Display(Name = "Problems")]
+        public string Problems { get; set; }
+
         [Required]
         [Display(Name = "Phone Number")]
         [DataType(DataType.PhoneNumber)]
@@ -33,6 +36,8 @@ namespace OnlineDoctorsAppointmentApp.Models
         public DateTime AppointmentTime { get; set; }
         public bool IsAppointmentComplete { get; set; }
         public bool IsAppointmentConfirm { get; set; }
+
+        [Display(Name = "Subscribe for Notification")]
         public bool IsNotificationSubscribed { get; set; }
     }
 }
