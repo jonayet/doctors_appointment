@@ -23,7 +23,6 @@ namespace OnlineDoctorsAppointmentApp.Models
 
         public virtual Doctor Doctors { get; set; }
         public virtual Chamber Chambers { get; set; }
-
         public List<Appointment> AppointmentList { get; set; } 
     }
 }
