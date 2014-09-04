@@ -1,5 +1,6 @@
 ﻿@using OnlineDoctorsAppointmentApp.Models
 @model IEnumerable<OnlineDoctorsAppointmentApp.Models.VisitingSession>
+
 @{
     ViewBag.Title = "Search Doctor";
 }
@@ -55,10 +56,26 @@
             </td>
             <td>
                 @{
-                   // int no = item.MaxNoOfAppointments - ViewBag.NoOfAppoinments;
-                }
-                @*@no*@
+                    int count = 50;
+                   List<Appointment> appointment = new List<Appointment>();
+                    
+                   foreach (Appointment anAppointment in appointment)
+                   {
+                       if (anAppointment.DoctorId == item.Doctors.DoctorId)  // problem is here anappointment.DoctorID 
+                       {
+                           count++;
+                       }
+                   }
 
+                   //ViewBag.NoOfAppoinments
+                  // ViewBag.available = item.Doctors.DoctorId;
+                   //ViewBag.available = item.MaxNoOfAppointments - count;
+                    ViewBag.available = count; 
+                    
+                    
+                }
+                 @ViewBag.available
+                @*@Html.DisplayFor(modelItem => item.MaxNoOfAppointments)*@
             </td>
             <td>
                 @*@Html.ActionLink("Edit", "Edit", new { id = item.VisitingSessionId }) |

@@ -13,10 +13,12 @@ namespace OnlineDoctorsAppointmentApp.Controllers
     public class SearchDoctorController : Controller
     {
         private AppDbContext db = new AppDbContext();
-
+        VisitingSession aSession = new VisitingSession();
         // GET: /SearchDoctor/
         public ActionResult Index()
         {
+            List<Appointment> appointments = new List<Appointment>();
+
             ViewBag.ChamberId = new SelectList(db.Chambers, "ChamberId", "Name");
             ViewBag.ChamberZone = new SelectList(db.Chambers, "ChamberId", "Zone");
             ViewBag.DoctorId = new SelectList(db.Doctors, "DoctorId", "DoctorName");
@@ -30,6 +32,8 @@ namespace OnlineDoctorsAppointmentApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index(int? DoctorId, int? SpecializationId, int? ChamberId, int? ChamberZone, DateTime? dateSearchTextbox, string searchTextbox)
         {
+           
+
             ViewBag.ChamberId = new SelectList(db.Chambers, "ChamberId", "Name");
             ViewBag.ChamberZone = new SelectList(db.Chambers, "ChamberId", "Zone");
             ViewBag.DoctorId = new SelectList(db.Doctors, "DoctorId", "DoctorName");
@@ -70,8 +74,16 @@ namespace OnlineDoctorsAppointmentApp.Controllers
                             || vs.Chambers.Name.Contains(searchTextbox) || vs.Chambers.Zone.Contains(searchTextbox))
                         .ToList();
                 }
-                ViewBag.NoOfAppoinments = adoctorList[0].AppointmentList.Count;
+
+               
+              //  List<Appointment> appointments = new List<Appointment>();
+
+               // int count = appointments.Count(anAppointment => anAppointment.DoctorId == DoctorId);
+
+              //  ViewBag.NoOfAppoinments = count; 
                 ViewBag.doctorList = adoctorList;
+
+               
             }
             return View();
         }
