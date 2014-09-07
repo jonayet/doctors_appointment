@@ -17,7 +17,7 @@ namespace OnlineDoctorsAppointmentApp.Controllers
         // GET: /VisitingSession/
         public ActionResult Index()
         {
-            var visitingsessions = db.VisitingSessions.Include(v => v.Chambers).Include(v => v.Doctors);
+            var visitingsessions = db.VisitingSessions.Include(v => v.Chamber).Include(v => v.Doctor);
             return View(visitingsessions.ToList());
         }
 
@@ -40,7 +40,7 @@ namespace OnlineDoctorsAppointmentApp.Controllers
         public ActionResult Create()
         {
             ViewBag.ChamberId = new SelectList(db.Chambers, "ChamberId", "Name");
-            ViewBag.DoctorId = new SelectList(db.Doctors, "DoctorId", "DoctorName");
+            ViewBag.DoctorId = new SelectList(db.Doctors, "DoctorId", "Name");
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace OnlineDoctorsAppointmentApp.Controllers
             }
 
             ViewBag.ChamberId = new SelectList(db.Chambers, "ChamberId", "Name", visitingsession.ChamberId);
-            ViewBag.DoctorId = new SelectList(db.Doctors, "DoctorId", "DoctorName", visitingsession.DoctorId);
+            ViewBag.DoctorId = new SelectList(db.Doctors, "DoctorId", "Name", visitingsession.DoctorId);
             return View(visitingsession);
         }
 
@@ -76,7 +76,7 @@ namespace OnlineDoctorsAppointmentApp.Controllers
                 return HttpNotFound();
             }
             ViewBag.ChamberId = new SelectList(db.Chambers, "ChamberId", "Name", visitingsession.ChamberId);
-            ViewBag.DoctorId = new SelectList(db.Doctors, "DoctorId", "DoctorName", visitingsession.DoctorId);
+            ViewBag.DoctorId = new SelectList(db.Doctors, "DoctorId", "Name", visitingsession.DoctorId);
             return View(visitingsession);
         }
 
@@ -94,7 +94,7 @@ namespace OnlineDoctorsAppointmentApp.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.ChamberId = new SelectList(db.Chambers, "ChamberId", "Name", visitingsession.ChamberId);
-            ViewBag.DoctorId = new SelectList(db.Doctors, "DoctorId", "DoctorName", visitingsession.DoctorId);
+            ViewBag.DoctorId = new SelectList(db.Doctors, "DoctorId", "Name", visitingsession.DoctorId);
             return View(visitingsession);
         }
 

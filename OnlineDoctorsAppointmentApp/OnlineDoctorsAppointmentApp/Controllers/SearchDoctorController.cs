@@ -17,14 +17,19 @@ namespace OnlineDoctorsAppointmentApp.Controllers
         // GET: /SearchDoctor/
         public ActionResult Index()
         {
-            List<Appointment> appointments = new List<Appointment>();
-
             ViewBag.ChamberId = new SelectList(db.Chambers, "ChamberId", "Name");
             ViewBag.ChamberZone = new SelectList(db.Chambers, "ChamberId", "Zone");
-            ViewBag.DoctorId = new SelectList(db.Doctors, "DoctorId", "DoctorName");
+            ViewBag.DoctorId = new SelectList(db.Doctors, "DoctorId", "Name");
             ViewBag.SpecializationId = new SelectList(db.Doctors, "DoctorId", "Specialization");
-            var doctors = db.VisitingSessions.Include(v => v.Chambers).Include(v => v.Doctors);
-            ViewBag.doctorList = doctors.ToList();
+            var visitingSessions = db.VisitingSessions.Include(v => v.Chamber).Include(v => v.Doctor);
+
+            // get all no of seat avilable
+            foreach (VisitingSession visitingSession in visitingSessions)
+            {
+                visitingSession.TotalNoOfAppointments = db.Appointments.Count(a => a.VisitingSessionId == visitingSession.VisitingSessionId);
+            }
+
+            ViewBag.doctorList = visitingSessions.ToList();
             return View(new VisitingSession());
         }
 
@@ -32,62 +37,53 @@ namespace OnlineDoctorsAppointmentApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index(int? DoctorId, int? SpecializationId, int? ChamberId, int? ChamberZone, DateTime? dateSearchTextbox, string searchTextbox)
         {
-           
-
             ViewBag.ChamberId = new SelectList(db.Chambers, "ChamberId", "Name");
             ViewBag.ChamberZone = new SelectList(db.Chambers, "ChamberId", "Zone");
-            ViewBag.DoctorId = new SelectList(db.Doctors, "DoctorId", "DoctorName");
+            ViewBag.DoctorId = new SelectList(db.Doctors, "DoctorId", "Name");
             ViewBag.SpecializationId = new SelectList(db.Doctors, "DoctorId", "Specialization");
 
-            List<VisitingSession> adoctorList = new List<VisitingSession>();
+            List<VisitingSession> visitingSessions = new List<VisitingSession>();
             if (ModelState.IsValid)
             {
                 if (DoctorId != null)
                 {
-                    adoctorList = db.VisitingSessions.Where(c => c.Doctors.DoctorId == DoctorId).ToList();
+                    visitingSessions = db.VisitingSessions.Where(c => c.Doctor.DoctorId == DoctorId).ToList();
                 }
                 else if (SpecializationId != null)
                 {
                     string specialization = db.Doctors.Find(SpecializationId).Specialization;
-                    adoctorList = db.VisitingSessions.Where(c => c.Doctors.Specialization.Contains(specialization)).ToList();
+                    visitingSessions = db.VisitingSessions.Where(c => c.Doctor.Specialization.Contains(specialization)).ToList();
                 }
                 else if (ChamberId != null)
                 {
-                    adoctorList = db.VisitingSessions.Where(c => c.Chambers.ChamberId == ChamberId).ToList();
+                    visitingSessions = db.VisitingSessions.Where(c => c.Chamber.ChamberId == ChamberId).ToList();
                 }
                 else if (ChamberZone != null)
                 {
                     string area = db.Chambers.Find(ChamberZone).Zone;
-                    adoctorList = db.VisitingSessions.Where(c => c.Chambers.Zone.Contains(area)).ToList();
+                    visitingSessions = db.VisitingSessions.Where(c => c.Chamber.Zone.Contains(area)).ToList();
                 }
                 else if(dateSearchTextbox != null)
                 {
-                    adoctorList = db.VisitingSessions.Where(c => c.StartTime == dateSearchTextbox).ToList();
+                    visitingSessions = db.VisitingSessions.Where(c => c.StartTime == dateSearchTextbox).ToList();
                 }
                 else if (searchTextbox != null)
                 {
-
-                    adoctorList = db.VisitingSessions.Where(
+                    visitingSessions = db.VisitingSessions.Where(
                         vs =>
-                            vs.Doctors.DoctorName.Contains(searchTextbox) ||
-                            vs.Doctors.Specialization.Contains(searchTextbox)
-                            || vs.Chambers.Name.Contains(searchTextbox) || vs.Chambers.Zone.Contains(searchTextbox))
+                            vs.Doctor.Name.Contains(searchTextbox) ||
+                            vs.Doctor.Specialization.Contains(searchTextbox)
+                            || vs.Chamber.Name.Contains(searchTextbox) || vs.Chamber.Zone.Contains(searchTextbox))
                         .ToList();
                 }
-<<<<<<< HEAD
-                //ViewBag.NoOfAppoinments = adoctorList[0].AppointmentList.Count;
-=======
 
-               
-              //  List<Appointment> appointments = new List<Appointment>();
+                // get all no of seat avilable
+                foreach (VisitingSession visitingSession in visitingSessions)
+                {
+                    visitingSession.TotalNoOfAppointments = db.Appointments.Count(a => a.VisitingSessionId == visitingSession.VisitingSessionId);
+                }
 
-               // int count = appointments.Count(anAppointment => anAppointment.DoctorId == DoctorId);
-
-              //  ViewBag.NoOfAppoinments = count; 
->>>>>>> origin/master
-                ViewBag.doctorList = adoctorList;
-
-               
+                ViewBag.doctorList = visitingSessions;
             }
             return View();
         }

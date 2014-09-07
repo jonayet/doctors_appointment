@@ -11,8 +11,12 @@ namespace OnlineDoctorsAppointmentApp.Models
         public int DoctorId { get; set; }
         
         [Required]
-        [Display (Name = "Doctor's Name")]
-        public string DoctorName { get; set; }
+        [Display (Name = "Name")]
+        public string Name { get; set; }
+
+        [Display(Name = "Image")]
+        public string ImagePath { get; set; }
+
         public string Degree { get; set; }
 
         [Required]
@@ -20,13 +24,13 @@ namespace OnlineDoctorsAppointmentApp.Models
         public string Specialization { get; set; }
 
         [DataType(DataType.EmailAddress)]
-        [Display(Name = "Doctor's Email")]
-        public string DoctorEmail { get; set; }
+        [Display(Name = "Email")]
+        public string Email { get; set; }
 
         [DataType(DataType.PhoneNumber)]
-        [Display(Name = "Doctor's Phone")]
+        [Display(Name = "Phone")]
         [Required]
-        public string DoctorPhone { get; set; }
+        public string Phone { get; set; }
 
         [Required]
         [Display(Name = "User Name")]
@@ -35,12 +39,8 @@ namespace OnlineDoctorsAppointmentApp.Models
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-        
-        [Display(Name = "Image")]
-        public string ImagePath { get; set; }
 
-        [Display(Name = "Doctor's Fee")]
-        [Required]
-        public double DoctorFee { get; set; }
+        [Display(Name = "Fee")]
+        public double Fee { get; set; }
     }
 }

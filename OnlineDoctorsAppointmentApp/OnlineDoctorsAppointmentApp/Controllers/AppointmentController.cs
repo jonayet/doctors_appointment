@@ -14,38 +14,34 @@ namespace OnlineDoctorsAppointmentApp.Controllers
         private Chamber aChamber;
         private VisitingSession aVisitingSession;
 
-        public ActionResult Index(int? doctorId)
+        public ActionResult Index()
         {
-            List<Appointment> appointments = new List<Appointment>();
-            appointments = db.Appointments.Where(a => a.DoctorId == doctorId).ToList();
+            var appointments = db.Appointments.ToList();
             return View(appointments);
         }
 
-
+        public ActionResult Index1(int? doctorId)
+        {
+            List<Appointment> appointments = new List<Appointment>();
+            appointments = db.Appointments.Where(a => a.DoctorId == doctorId).ToList();
+            //return View(appointments);
+            return RedirectToAction("Index");
+        }
 
         [HttpGet]
         public ActionResult Create()
         {
-            int i = 1;
-            
             aDoctor = db.Doctors.Find(1);
             aChamber = db.Chambers.Find(1);
             aVisitingSession = db.VisitingSessions.Find(1);
             ViewBag.SelectedDoctor = aDoctor;
             ViewBag.SelectedChamber = aChamber;
             ViewBag.SelectedVisitingSession = aVisitingSession;
-            if (i <= aVisitingSession.MaxNoOfAppointments)
-            {
-                ViewBag.SerialNo = i;
-                i++;
-            }
-           
             ViewBag.AppointmentTime = "02/09/2014 10:00 AM";
 
             Appointment anAppointment = new Appointment();
             return View(anAppointment);
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -55,11 +51,5 @@ namespace OnlineDoctorsAppointmentApp.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
-        //public ActionResult Details(int appointmentid)
-        //{
-        //    // Details to be created
-        //    return View();
-        //}
     }
 }

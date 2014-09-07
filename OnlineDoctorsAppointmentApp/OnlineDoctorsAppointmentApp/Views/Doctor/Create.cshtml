@@ -17,10 +17,10 @@
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DoctorName, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DoctorName)
-                @Html.ValidationMessageFor(model => model.DoctorName)
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
             </div>
         </div>
 
@@ -41,18 +41,18 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DoctorEmail, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DoctorEmail)
-                @Html.ValidationMessageFor(model => model.DoctorEmail)
+                @Html.EditorFor(model => model.Email)
+                @Html.ValidationMessageFor(model => model.Email)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DoctorPhone, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Phone, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DoctorPhone)
-                @Html.ValidationMessageFor(model => model.DoctorPhone)
+                @Html.EditorFor(model => model.Phone)
+                @Html.ValidationMessageFor(model => model.Phone)
             </div>
         </div>
 
@@ -71,15 +71,6 @@
                 @Html.ValidationMessageFor(model => model.Password)
             </div>
         </div>
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.ImagePath, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ImagePath)
-                @Html.ValidationMessageFor(model => model.ImagePath)
-            </div>
-        </div>*@
-        
         
         <div class="form-group">
             @Html.LabelFor(model => model.ImagePath, new { @class = "control-label col-md-2" })
@@ -89,14 +80,12 @@
                 <img id="imageView" src="#" width="200" height="200" />
             </div>
         </div>
-        
-        
 
         <div class="form-group">
-                @Html.LabelFor(model => model.DoctorFee, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Fee, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.DoctorFee)
-                    @Html.ValidationMessageFor(model => model.DoctorFee)
+                    @Html.EditorFor(model => model.Fee)
+                    @Html.ValidationMessageFor(model => model.Fee)
                 </div>
             </div>
 
@@ -112,25 +101,24 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-<script>
-    function readURL(input) {
-
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#imageView').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    $("#imageFile").change(function () {
-        readURL(this);
-    });
-    
-</script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery")
+
+    <script>
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imageView').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imageFile").change(function () {
+            readURL(this);
+        });
+    </script>
 }

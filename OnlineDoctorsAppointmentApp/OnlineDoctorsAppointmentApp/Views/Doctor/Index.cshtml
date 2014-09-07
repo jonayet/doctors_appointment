@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.DoctorName)
+            @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Degree)
@@ -21,10 +21,10 @@
             @Html.DisplayNameFor(model => model.Specialization)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DoctorEmail)
+            @Html.DisplayNameFor(model => model.Email)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DoctorPhone)
+            @Html.DisplayNameFor(model => model.Phone)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.UserName)
@@ -36,7 +36,7 @@
             @Html.DisplayNameFor(model => model.ImagePath)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DoctorFee)
+            @Html.DisplayNameFor(model => model.Fee)
         </th>
         <th></th>
     </tr>
@@ -44,7 +44,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.DoctorName)
+            @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Degree)
@@ -53,10 +53,10 @@
             @Html.DisplayFor(modelItem => item.Specialization)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DoctorEmail)
+            @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DoctorPhone)
+            @Html.DisplayFor(modelItem => item.Phone)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.UserName)
@@ -68,7 +68,7 @@
             <img src="@Url.Content("~/Images/" + item.ImagePath)" height=100 width=100 />
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DoctorFee)
+            @Html.DisplayFor(modelItem => item.Fee)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.DoctorId }) |

@@ -11,12 +11,14 @@ namespace OnlineDoctorsAppointmentApp.Models
     public class Chamber
     {
         public int ChamberId { get; set; }
-        [Display(Name = "Chamber's Name")]
+
+        [Display(Name = "Name")]
         public string Name { get; set; }
-        [Display(Name = "Chamber's Zone")]
+        
+        [Display(Name = "Zone")]
         public string Zone { get; set; }
-        [Display(Name = "Chamber's Address")]
+        
+        [Display(Name = "Address")]
         public string Address { get; set; }
-        public List<VisitingSession> VisitingSessions { get; set; }
     }
 }

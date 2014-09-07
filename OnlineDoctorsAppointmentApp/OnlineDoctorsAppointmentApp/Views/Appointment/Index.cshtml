@@ -2,7 +2,7 @@
 @model IEnumerable<OnlineDoctorsAppointmentApp.Models.Appointment>
 
 @{
-    Layout = null;
+    //Layout = null;
 }
 
 <!DOCTYPE html>
@@ -12,7 +12,12 @@
         <title>Your Appoinments</title>
     </head>
     <body>
-        
+        <h2>Index</h2>
+
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+
         <table class="table">
             <tr>
                 <th>Time</th>
@@ -41,7 +46,7 @@
             @Html.DisplayFor(modelItem => item.PatientEmail)
         </td>
         <td>
-            @Html.ActionLink("Details","Details",new {appointmentId=item.AppointmentId})
+            @Html.ActionLink("Details","Index",new {appointmentId=item.AppointmentId})
         </td>
     </tr>
 }

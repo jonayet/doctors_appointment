@@ -9,8 +9,11 @@ namespace OnlineDoctorsAppointmentApp.Models
     public class Appointment
     {
         public int AppointmentId { get; set; }
+
         public int ChamberId { get; set; }
+
         public int DoctorId { get; set; }
+
         public int VisitingSessionId { get; set; }
 
         [Required]
@@ -34,10 +37,12 @@ namespace OnlineDoctorsAppointmentApp.Models
 
         [Display(Name = "Appointment Time")]
         public DateTime AppointmentTime { get; set; }
-        public bool IsAppointmentComplete { get; set; }
-        public bool IsAppointmentConfirm { get; set; }
 
         [Display(Name = "Subscribe for Notification")]
         public bool IsNotificationSubscribed { get; set; }
+
+        public bool IsAppointmentConfirm { get; set; }
+
+        public bool IsAppointmentComplete { get; set; }
     }
 }

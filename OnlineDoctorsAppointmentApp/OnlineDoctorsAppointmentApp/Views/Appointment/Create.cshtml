@@ -3,11 +3,9 @@
 
 @{
     ViewBag.Title = "Create Appoinment";
-
 }
 
 <h2>Create Appoinment</h2>
-
 
 @using (Html.BeginForm("Create", "Appointment", FormMethod.Post))
 {
@@ -20,7 +18,7 @@
         <div class="form-group">
             @Html.Label("Doctor Name:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @ViewBag.SelectedDoctor.DoctorName
+                @ViewBag.SelectedDoctor.Name
 
             </div>
         </div>
@@ -91,9 +89,7 @@
             @Html.ValidationMessageFor(model => model.IsNotificationSubscribed)
         </div>
         
-        
         @*passing DoctorId,ChamberId,AppointmentTime (from the search controller) to controller*@
-
         <input type="text" name="DoctorId" value='@ViewBag.SelectedDoctor.DoctorId' hidden="hidden" />
         <input type="text" name="ChamberId" value="@ViewBag.SelectedChamber.ChamberId" hidden="hidden" />
         <input type="text" name="VisitingSessionId" value="@ViewBag.SelectedVisitingSession.VisitingSessionId" hidden="hidden" />

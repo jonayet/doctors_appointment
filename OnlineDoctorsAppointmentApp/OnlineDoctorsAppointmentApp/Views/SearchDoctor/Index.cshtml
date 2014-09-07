@@ -6,8 +6,6 @@
     ViewBag.Title = "Search Doctor";
 }
 
-
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -16,7 +14,6 @@
 
         <hr />
         @Html.ValidationSummary(true)
-
 
         <div class="form-group">
             @Html.LabelFor(model => model.DoctorId, "Doctor Name", new { @class = "control-label col-md-2" })
@@ -27,15 +24,15 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Doctors.Specialization, "Specialization", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Doctor.Specialization, "Specialization", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("SpecializationId", String.Empty)
-                @Html.ValidationMessageFor(model => model.Doctors.Specialization)
+                @Html.ValidationMessageFor(model => model.Doctor.Specialization)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Chambers.ChamberId, "Chamber Name", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Chamber.ChamberId, "Chamber Name", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("ChamberId", String.Empty)
                 @Html.ValidationMessageFor(model => model.ChamberId)
@@ -43,10 +40,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Chambers.Zone, "Area", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Chamber.Zone, "Area", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("ChamberZone", String.Empty)
-                @Html.ValidationMessageFor(model => model.Chambers.Zone)
+                @Html.ValidationMessageFor(model => model.Chamber.Zone)
             </div>
         </div>
 
@@ -61,24 +58,22 @@
             <div class="col-md-10">
                 @Html.Editor("searchTextbox")
             </div>
-       </div>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Search" class="btn btn-default" />
             </div>
         </div>
+        
+        @{
+            List<VisitingSession> vsList = ViewBag.doctorList;
+            @Html.Partial("_DoctorListPartial", vsList)
+        }
+
     </div>
 }
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-<h1>appoint : @ViewBag.NoOfAppoinments </h1>
-@{
-    List<VisitingSession> vsList = new List<VisitingSession>();
-    vsList = ViewBag.doctorList;
-  
-    @Html.Partial("SearchDoctor", vsList)
-}

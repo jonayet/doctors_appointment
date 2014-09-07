@@ -168,6 +168,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201409071743380_InitialCreate.cs" />
+    <Compile Include="Migrations\201409071743380_InitialCreate.Designer.cs">
+      <DependentUpon>201409071743380_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201409071817026_mig-2.cs" />
+    <Compile Include="Migrations\201409071817026_mig-2.Designer.cs">
+      <DependentUpon>201409071817026_mig-2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\Appointment.cs" />
@@ -243,7 +252,7 @@
     <Content Include="Views\Chamber\Edit.cshtml" />
     <Content Include="Views\Chamber\Index.cshtml" />
     <Content Include="Views\SearchDoctor\Index.cshtml" />
-    <Content Include="Views\SearchDoctor\SearchDoctor.cshtml" />
+    <Content Include="Views\SearchDoctor\_DoctorListPartial.cshtml" />
     <Content Include="Views\Appointment\Create.cshtml" />
     <Content Include="Views\Appointment\Index.cshtml" />
     <Content Include="Views\SearchDoctor\SearchByDoctorName.cshtml" />
@@ -258,6 +267,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201409071743380_InitialCreate.resx">
+      <DependentUpon>201409071743380_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409071817026_mig-2.resx">
+      <DependentUpon>201409071817026_mig-2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

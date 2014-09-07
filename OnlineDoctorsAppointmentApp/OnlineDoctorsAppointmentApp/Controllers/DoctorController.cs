@@ -46,7 +46,7 @@ namespace OnlineDoctorsAppointmentApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="DoctorId,DoctorName,Degree,Specialization,DoctorEmail,DoctorPhone,UserName,Password,ImagePath,DoctorFee")] Doctor doctor, HttpPostedFileBase imageFile)
+        public ActionResult Create([Bind(Include="DoctorId,Name,Degree,Specialization,Email,Phone,UserName,Password,ImagePath,Fee")] Doctor doctor, HttpPostedFileBase imageFile)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +83,7 @@ namespace OnlineDoctorsAppointmentApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="DoctorId,DoctorName,Degree,Specialization,DoctorEmail,DoctorPhone,UserName,Password,ImagePath,DoctorFee")] Doctor doctor)
+        public ActionResult Edit([Bind(Include="DoctorId,Name,Degree,Specialization,Email,Phone,UserName,Password,ImagePath,Fee")] Doctor doctor)
         {
             if (ModelState.IsValid)
             {
