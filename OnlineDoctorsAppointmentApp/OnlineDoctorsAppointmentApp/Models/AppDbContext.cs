@@ -18,6 +18,8 @@ namespace OnlineDoctorsAppointmentApp.Models
         public DbSet<Chamber> Chambers { get; set; }
         public DbSet<VisitingSession> VisitingSessions { get; set; }
 
+        public System.Data.Entity.DbSet<OnlineDoctorsAppointmentApp.Models.LoginInfo> Logins { get; set; }
+
        
     }
 }

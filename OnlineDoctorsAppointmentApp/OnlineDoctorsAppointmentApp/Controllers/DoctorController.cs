@@ -4,12 +4,14 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using OnlineDoctorsAppointmentApp.Models;
 
 namespace OnlineDoctorsAppointmentApp.Controllers
 {
+    [Authorize]
     public class DoctorController : Controller
     {
         private AppDbContext db = new AppDbContext();
@@ -46,7 +48,7 @@ namespace OnlineDoctorsAppointmentApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="DoctorId,Name,Degree,Specialization,Email,Phone,UserName,Password,ImagePath,Fee")] Doctor doctor, HttpPostedFileBase imageFile)
+        public async Task<ActionResult> Create([Bind(Include="DoctorId,Name,Degree,Specialization,Email,Phone,UserName,Password,ImagePath,Fee")] Doctor doctor, HttpPostedFileBase imageFile)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +57,10 @@ namespace OnlineDoctorsAppointmentApp.Controllers
                     imageFile.SaveAs(HttpContext.Server.MapPath("~/Images/" + imageFile.FileName));
                     doctor.ImagePath = imageFile.FileName;
                 }
+
+                var ac = new AccountController();
+                await ac.RegisterWithoutSignIn(doctor.UserName, doctor.Password);
+
                 db.Doctors.Add(doctor);
                 db.SaveChanges();
                 return RedirectToAction("Index");

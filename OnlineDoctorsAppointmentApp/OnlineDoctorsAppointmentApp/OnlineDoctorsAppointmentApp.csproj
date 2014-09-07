@@ -163,26 +163,19 @@
     <Compile Include="Controllers\ChamberController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginPanelController.cs" />
     <Compile Include="Controllers\SearchDoctorController.cs" />
     <Compile Include="Controllers\VisitingSessionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201409071743380_InitialCreate.cs" />
-    <Compile Include="Migrations\201409071743380_InitialCreate.Designer.cs">
-      <DependentUpon>201409071743380_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201409071817026_mig-2.cs" />
-    <Compile Include="Migrations\201409071817026_mig-2.Designer.cs">
-      <DependentUpon>201409071817026_mig-2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\Chamber.cs" />
     <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LoginInfo.cs" />
     <Compile Include="Models\SearchDoctor.cs" />
     <Compile Include="Models\VisitingSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -256,6 +249,7 @@
     <Content Include="Views\Appointment\Create.cshtml" />
     <Content Include="Views\Appointment\Index.cshtml" />
     <Content Include="Views\SearchDoctor\SearchByDoctorName.cshtml" />
+    <Content Include="Views\LoginPanel\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -267,14 +261,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201409071743380_InitialCreate.resx">
-      <DependentUpon>201409071743380_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201409071817026_mig-2.resx">
-      <DependentUpon>201409071817026_mig-2.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
