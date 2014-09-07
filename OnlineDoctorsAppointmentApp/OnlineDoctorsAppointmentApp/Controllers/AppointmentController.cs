@@ -26,13 +26,20 @@ namespace OnlineDoctorsAppointmentApp.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            int i = 1;
+            
             aDoctor = db.Doctors.Find(1);
             aChamber = db.Chambers.Find(1);
             aVisitingSession = db.VisitingSessions.Find(1);
             ViewBag.SelectedDoctor = aDoctor;
             ViewBag.SelectedChamber = aChamber;
             ViewBag.SelectedVisitingSession = aVisitingSession;
-            ViewBag.SerialNo = 23;
+            if (i <= aVisitingSession.MaxNoOfAppointments)
+            {
+                ViewBag.SerialNo = i;
+                i++;
+            }
+           
             ViewBag.AppointmentTime = "02/09/2014 10:00 AM";
 
             Appointment anAppointment = new Appointment();

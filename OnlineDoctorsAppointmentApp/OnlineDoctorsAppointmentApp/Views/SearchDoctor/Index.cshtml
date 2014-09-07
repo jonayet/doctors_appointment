@@ -7,6 +7,7 @@
 }
 
 
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -74,8 +75,10 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
+<h1>appoint : @ViewBag.NoOfAppoinments </h1>
 @{
     List<VisitingSession> vsList = new List<VisitingSession>();
     vsList = ViewBag.doctorList;
+  
     @Html.Partial("SearchDoctor", vsList)
 }
