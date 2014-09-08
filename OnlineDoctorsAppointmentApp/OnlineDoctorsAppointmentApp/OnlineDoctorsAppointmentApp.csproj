@@ -188,11 +188,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-<<<<<<< HEAD
     <Content Include="Content\justified-nav.css" />
-=======
     <Content Include="Content\jquery.datetimepicker.css" />
->>>>>>> 612c5686ae12976bbd0921dc128ba10c9ac79670
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
