@@ -62,8 +62,8 @@
                 @*@Html.ActionLink("Edit", "Edit", new { id = item.VisitingSessionId }) |
                 @Html.ActionLink("Details", "Details", new { id = item.VisitingSessionId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.VisitingSessionId })*@
-                
-                <input id="appointmentButton" type="button" value="Confirm" /> 
+                <input type="button" title="Make Appointment" value="Confirm" onclick="location.href='@Url.Action("Create", "Appointment", new { id = item.AppointmentId })'" />
+                @*<input id="appointmentButton" type="button" value="Confirm" />*@ 
             </td>
         </tr>
     }

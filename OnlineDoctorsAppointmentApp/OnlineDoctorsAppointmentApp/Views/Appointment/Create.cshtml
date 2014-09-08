@@ -7,7 +7,7 @@
 
 <h2>Create Appoinment</h2>
 
-@using (Html.BeginForm("Create", "Appointment", FormMethod.Post))
+@using (Html.BeginForm("Create", "Appointment", FormMethod.Post, new { onsubmit = "if(!confirm('Is the form filled out correctly?')){return false;}" }))
 {
     @Html.AntiForgeryToken()
 
@@ -97,23 +97,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <button onclick="myFunction()">Confirm</button>
-
-                <p id="demo"></p>
-
-                <script>
-                    function myFunction() {
-                        var x;
-                        if (confirm("Are You Sure!") == true) {
-                            x = "You pressed OK!";
-                        } else {
-                            x = "You pressed Cancel!";
-                        }
-                        document.getElementById("demo").innerHTML = x;
-                    }
-                </script>
-
-                @*<input type="submit" value="Create" class="btn btn-default" />*@
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
