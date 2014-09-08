@@ -30,7 +30,6 @@
             </div>
         </div>
     </div>*@
-<<<<<<< HEAD
         <div class="container">
                 <div class="navbar-collapse collapse">
                     @Html.Partial("_LoginPartial")
@@ -41,6 +40,12 @@
                         <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "active" })</li>
                         <li>@Html.ActionLink("About", "About", "Home")</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Doctor", "Index", "Doctor")</li>
+                        <li>@Html.ActionLink("Chamber", "Index", "Chamber")</li>
+                        <li>@Html.ActionLink("Appointment", "Index", "Appointment")</li>
+                        <li>@Html.ActionLink("Login", "Index", "LoginPanel")</li>
+                        <li>@Html.ActionLink("Search Doctor", "Index", "SearchDoctor")</li>
+                        <li>@Html.ActionLink("Visiting Session", "Index", "VisitingSession")</li>
                     </ul>
                 </div>
             </div>
@@ -50,22 +55,6 @@
             <footer>
                 <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
             </footer>
-=======
-    <div class="container">
-        <div class="masthead">
-            <h3 class="text-muted">@Html.ActionLink("Online Doctor's Appointment", "Index", "Home")</h3>
-            <ul class="nav nav-justified">
-                <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "active" })</li>
-                <li>@Html.ActionLink("About", "About", "Home")</li>
-                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                <li>@Html.ActionLink("Doctor", "Index", "Doctor")</li>
-                <li>@Html.ActionLink("Chamber", "Index", "Chamber")</li>
-                <li>@Html.ActionLink("Appointment", "Index", "Appointment")</li>
-                <li>@Html.ActionLink("Login", "Index", "LoginPanel")</li>
-                <li>@Html.ActionLink("Search Doctor", "Index", "SearchDoctor")</li>
-                <li>@Html.ActionLink("Visiting Session", "Index", "VisitingSession")</li>
-            </ul>
->>>>>>> origin/master
         </div>
 
         @*@Scripts.Render("~/bundles/jquery")*@
