@@ -95,18 +95,6 @@ namespace OnlineDoctorsAppointmentApp.Controllers
             return View(model);
         }
 
-        public async Task<bool> RegisterWithoutSignIn(string userName, string password, IAuthenticationManager authenticationManager)
-        {
-            var user = new ApplicationUser() { UserName = userName };
-            var result = await UserManager.CreateAsync(user, password);
-            if (result.Succeeded)
-            {
-                await SignInAsync(user, isPersistent: false);
-                return true;
-            }
-            return false;
-        }
-
         //
         // POST: /Account/Disassociate
         [HttpPost]
