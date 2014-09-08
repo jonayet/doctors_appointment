@@ -1,0 +1,50 @@
+﻿@model IEnumerable<OnlineDoctorsAppointmentApp.Models.Appointment>
+
+<table class="table">
+    <tr>
+        <th>Serial No.</th>
+        <th>Appointment Time</th>
+        <th>Patient Name</th>
+        <th>Problems</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Confirm</th>
+        <th>Complete</th>
+
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AppointmentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AppointmentTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Problems)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientAddress)
+            </td>
+            <td>
+                @Html.CheckBoxFor(modelItem => item.IsAppointmentConfirm)
+            </td>
+            <td>
+                @Html.CheckBoxFor(modelItem => item.IsAppointmentComplete)
+            </td>
+        </tr>
+    }
+
+</table>

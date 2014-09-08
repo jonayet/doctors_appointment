@@ -40,6 +40,12 @@ namespace OnlineDoctorsAppointmentApp.Controllers
             return View(doctor);
         }
 
+        public ActionResult DashBoard()
+        {
+            var appointmentlist = db.Appointments.ToList();
+            return View(appointmentlist);
+        }
+
         // GET: /Doctor/Create
         public ActionResult Create()
         {
