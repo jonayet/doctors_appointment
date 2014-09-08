@@ -7,6 +7,9 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
 using OnlineDoctorsAppointmentApp.Models;
 
 namespace OnlineDoctorsAppointmentApp.Controllers
@@ -14,6 +17,12 @@ namespace OnlineDoctorsAppointmentApp.Controllers
     public class DoctorController : Controller
     {
         private AppDbContext db = new AppDbContext();
+        private UserManager<ApplicationUser> UserManager { get; set; }
+
+        public DoctorController()
+        {
+            UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+        }
 
         // GET: /Doctor/
         public ActionResult Index()
@@ -42,6 +51,18 @@ namespace OnlineDoctorsAppointmentApp.Controllers
             return View();
         }
 
+        public async Task<bool> RegisterWithoutSignIn(string userName, string password)
+        {
+            var user = new ApplicationUser() {UserName = userName};
+
+            var result = await UserManager.CreateAsync(user, password);
+            if (result.Succeeded)
+            {
+                return true;
+            }
+            return false;
+        }
+
         // POST: /Doctor/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -56,9 +77,9 @@ namespace OnlineDoctorsAppointmentApp.Controllers
                     imageFile.SaveAs(HttpContext.Server.MapPath("~/Images/" + imageFile.FileName));
                     doctor.ImagePath = imageFile.FileName;
                 }
-
-                var ac = new AccountController();
-                await ac.RegisterWithoutSignIn(doctor.UserName, doctor.Password);
+                
+                // create authentication user id
+                await RegisterWithoutSignIn(doctor.UserName, doctor.Password);
 
                 db.Doctors.Add(doctor);
                 db.SaveChanges();
@@ -123,6 +144,21 @@ namespace OnlineDoctorsAppointmentApp.Controllers
             db.Doctors.Remove(doctor);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        private async Task SignInAsync(ApplicationUser user, bool isPersistent)
+        {
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+            var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
+        }
+
+        private IAuthenticationManager AuthenticationManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().Authentication;
+            }
         }
 
         protected override void Dispose(bool disposing)
