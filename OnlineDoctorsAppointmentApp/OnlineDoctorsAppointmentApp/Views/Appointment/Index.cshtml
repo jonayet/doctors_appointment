@@ -12,51 +12,64 @@
         <title>Your Appoinment</title>
     </head>
     <body>
-        <h2>Appointment Details</h2>
+        <h2>Index</h2>
 
         <p>
             @Html.ActionLink("Create New", "Create")
         </p>
+        
+        
         <div class="form-group">
             @Html.Label("Doctor's Name:")
-            @ViewBag.doctorName"
+            <div class="col-md-10">
+                <input type="text" readonly="readonly" value="@ViewBag.doctorName" />
+            </div>
         </div>
         <div class="form-group">
             @Html.Label("Appointment Time:")
-            @Model.AppointmentTime
-            
+            <div class="col-md-10">
+                <input type="text" readonly="readonly" value="@Model.AppointmentTime" />
+            </div>
         </div>
         
         
         <div class="form-group">
-            @Html.Label("Serial No: ")
-            @ViewBag.SerialNo
+            @Html.Label("Serial No:")
+            <div class="col-md-10">
+                <input type="text" readonly="readonly" value="Your serial No." />
+            </div>
         </div>
         
         <div class="form-group">
-            @Html.Label("Chamber Address: ")
-            @ViewBag.chamberName
-                
-            
+            @Html.Label("Chamber Address:")
+            <div class="col-md-10">
+                <input type="text" readonly="readonly" value="@ViewBag.chamberName" />
+            </div>
         </div>
         
         <div class="form-group">
-            @Html.Label("Your Name: ")
-            @Model.PatientName
+            @Html.Label("Your Name:")
+            <div class="col-md-10">
+                <input type="text" readonly="readonly" value="@Model.PatientName" />
+            </div>
         </div>
         <div class="form-group">
-            @Html.Label("Your Email: ")
-            @Model.PatientEmail
-            
+            @Html.Label("Your Email:")
+            <div class="col-md-10">
+                <input type="text" readonly="readonly" value="@Model.PatientEmail" />
+            </div>
         </div>
         <div class="form-group">
-            @Html.Label("Your Phone: ")
-            @Model.PatientPhone
-            
+            @Html.Label("Your Phone:")
+            <div class="col-md-10">
+                <input type="text" readonly="readonly" value="@Model.PatientPhone" />
+            </div>
         </div>
         <div class="form-group">
-            @Html.Label("Your Address: ")
-            @Model.PatientAddress
+            @Html.Label("Your Address:")
+            <div class="col-md-10">
+                <input type="text" readonly="readonly" value="@Model.PatientAddress" />
+            </div>
         </div>
 
 

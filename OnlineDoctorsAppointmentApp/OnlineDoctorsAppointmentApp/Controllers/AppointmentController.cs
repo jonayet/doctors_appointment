@@ -9,7 +9,6 @@ using OnlineDoctorsAppointmentApp.Models;
 
 namespace OnlineDoctorsAppointmentApp.Controllers
 {
-
     public class AppointmentController : Controller
     {
         
@@ -18,7 +17,11 @@ namespace OnlineDoctorsAppointmentApp.Controllers
         private Chamber aChamber;
         private VisitingSession aVisitingSession;
 
-       
+        public ActionResult Index()
+        {
+            //var appointments = db.Appointments.ToList();
+            return RedirectToAction("Index","SearchDoctor");
+        }
 
 
         public ActionResult Index(Appointment anAppointment)
