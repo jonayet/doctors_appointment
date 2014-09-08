@@ -27,7 +27,9 @@ namespace OnlineDoctorsAppointmentApp
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
                 "~/Content/bootstrap - datetimepicker.min.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/justified-nav.css",
+                      "~/Content/bootstrap.min.css"));
         }
     }
 }

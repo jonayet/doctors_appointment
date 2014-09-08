@@ -54,7 +54,6 @@ namespace OnlineDoctorsAppointmentApp.Controllers
         public async Task<bool> RegisterWithoutSignIn(string userName, string password)
         {
             var user = new ApplicationUser() {UserName = userName};
-
             var result = await UserManager.CreateAsync(user, password);
             if (result.Succeeded)
             {
