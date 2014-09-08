@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using OnlineDoctorsAppointmentApp.Models;
 
 namespace OnlineDoctorsAppointmentApp.Controllers
@@ -24,28 +26,54 @@ namespace OnlineDoctorsAppointmentApp.Controllers
         //
         // POST: /LoginPanel/
         [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Index(LoginInfo loginInfoInfo, string ReturnUrl)
         {
             if (ModelState.IsValid)
             {
+                var authSystem = new AuthenticationSystem(HttpContext.GetOwinContext().Authentication);
+
+                ///// STSTEM Admin Login /////
+                if (loginInfoInfo.UserName == "sysadmin" && loginInfoInfo.Password == "sys123")
+                {
+                    bool isAdminRegistered = await authSystem.IsUserRegistered(loginInfoInfo.UserName, loginInfoInfo.Password);
+                    if (isAdminRegistered)
+                    {
+                        await authSystem.SignInAsync(loginInfoInfo.UserName, loginInfoInfo.Password, false);
+                    }
+                    else
+                    {
+                        await authSystem.CreateAndSignInAsync(loginInfoInfo.UserName, loginInfoInfo.Password, false);
+                    }
+
+                    if (Url.IsLocalUrl(ReturnUrl))
+                    {
+                        return Redirect(ReturnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                ///// STSTEM Admin Login /////
+
                 bool isValidUser =
                     db.Doctors.Count(d => d.UserName == loginInfoInfo.UserName && d.Password == loginInfoInfo.Password) > 0;
                 if (isValidUser)
                 {
-                    var aLoginViewModel = new LoginViewModel
+                    await authSystem.SignInAsync(loginInfoInfo.UserName, loginInfoInfo.Password, loginInfoInfo.RememberMe);
+                    if (Url.IsLocalUrl(ReturnUrl))
                     {
-                        UserName = loginInfoInfo.UserName,
-                        Password = loginInfoInfo.Password,
-                        RememberMe = loginInfoInfo.RememberMe
-                    };
-
-                    var ac = new AccountController();
-                    await ac.Login(aLoginViewModel, ReturnUrl);
+                        return Redirect(ReturnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
             }
             return View();
         }
-
-
 	}
 }

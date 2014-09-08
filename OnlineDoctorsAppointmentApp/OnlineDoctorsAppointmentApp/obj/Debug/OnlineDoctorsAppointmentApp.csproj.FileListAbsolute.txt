@@ -215,3 +215,4 @@ C:\Users\PC-09\Documents\GitHub\doctors_appointment\OnlineDoctorsAppointmentApp\
 C:\Users\PC-09\Documents\GitHub\doctors_appointment\OnlineDoctorsAppointmentApp\OnlineDoctorsAppointmentApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\PC-09\Documents\GitHub\doctors_appointment\OnlineDoctorsAppointmentApp\OnlineDoctorsAppointmentApp\obj\Debug\OnlineDoctorsAppointmentApp.dll
 C:\Users\PC-09\Documents\GitHub\doctors_appointment\OnlineDoctorsAppointmentApp\OnlineDoctorsAppointmentApp\obj\Debug\OnlineDoctorsAppointmentApp.pdb
+C:\Users\PC-09\Documents\GitHub\doctors_appointment\OnlineDoctorsAppointmentApp\OnlineDoctorsAppointmentApp\obj\Debug\OnlineDoctorsAppointmentApp.csprojResolveAssemblyReference.cache
