@@ -1,5 +1,5 @@
 ﻿@using System.Web.Mvc.Html
-@model IEnumerable<OnlineDoctorsAppointmentApp.Models.Appointment>
+@model OnlineDoctorsAppointmentApp.Models.Appointment
 
 @{
     //Layout = null;
@@ -9,7 +9,7 @@
 
 <html>
     <head>
-        <title>Your Appoinments</title>
+        <title>Your Appoinment</title>
     </head>
     <body>
         <h2>Index</h2>
@@ -17,41 +17,60 @@
         <p>
             @Html.ActionLink("Create New", "Create")
         </p>
-
-        <table class="table">
-            <tr>
-                <th>Time</th>
-                <th>Serial No.</th>
-                <th>Patient Name</th>
-                <th>Phone No.</th>
-                <th>Email</th>
-                <th></th>
-            </tr>
-@foreach (var item in Model)
-{
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem=>item.AppointmentTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AppointmentId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PatientName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PatientPhone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PatientEmail)
-        </td>
-        <td>
-            @Html.ActionLink("Details","Index",new {appointmentId=item.AppointmentId})
-        </td>
-    </tr>
-}
-
-        </table>
+        
+        
+        <div class="form-group">
+            @Html.Label("Doctor's Name:")
+            <div class="col-md-10">
+                <input type="text" readonly="readonly" value="@ViewBag.doctorName" />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Appointment Time:")
+            <div class="col-md-10">
+                <input type="text" readonly="readonly" value="@Model.AppointmentTime" />
+            </div>
+        </div>
+        
+        
+        <div class="form-group">
+            @Html.Label("Serial No:")
+            <div class="col-md-10">
+                <input type="text" readonly="readonly" value="Your serial No." />
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.Label("Chamber Address:")
+            <div class="col-md-10">
+                <input type="text" readonly="readonly" value="@ViewBag.chamberName" />
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.Label("Your Name:")
+            <div class="col-md-10">
+                <input type="text" readonly="readonly" value="@Model.PatientName" />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Your Email:")
+            <div class="col-md-10">
+                <input type="text" readonly="readonly" value="@Model.PatientEmail" />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Your Phone:")
+            <div class="col-md-10">
+                <input type="text" readonly="readonly" value="@Model.PatientPhone" />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Your Address:")
+            <div class="col-md-10">
+                <input type="text" readonly="readonly" value="@Model.PatientAddress" />
+            </div>
+        </div>
 
 
     </body>

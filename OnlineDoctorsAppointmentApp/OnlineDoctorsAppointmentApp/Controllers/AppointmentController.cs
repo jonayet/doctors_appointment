@@ -19,8 +19,18 @@ namespace OnlineDoctorsAppointmentApp.Controllers
 
         public ActionResult Index()
         {
-            var appointments = db.Appointments.ToList();
-            return View(appointments);
+            //var appointments = db.Appointments.ToList();
+            return RedirectToAction("Index","SearchDoctor");
+        }
+
+
+        public ActionResult Index(Appointment anAppointment)
+        {
+            var doctor = db.Doctors.Find(anAppointment.DoctorId);
+            var chamber = db.Chambers.Find(anAppointment.ChamberId);
+            ViewBag.doctorName = doctor.Name;
+            ViewBag.chamberName = chamber.Name + ", " + chamber.Address;
+            return View(anAppointment);
         }
 
         public ActionResult Index1(int? doctorId)
@@ -52,12 +62,15 @@ namespace OnlineDoctorsAppointmentApp.Controllers
         {
             db.Appointments.Add(anAppointment);
             db.SaveChanges();
+            // code for sending mail-----------------------------------------------------------------------------------
             var drName = db.Doctors.Find(anAppointment.DoctorId);
             var chamber = db.Chambers.Find(anAppointment.ChamberId);
             string appointmentConfirmationMessage = "Your Appointment with " + drName.Name + " has been confirmed at " +
                                                     anAppointment.AppointmentTime + " at " + chamber.Name + ". Please be there at time.";
             SendMail(anAppointment.PatientEmail, "Appointment Confirmation", appointmentConfirmationMessage);
-            return RedirectToAction("Index");
+            
+            
+            return RedirectToAction("Index",anAppointment);
         }
 
         public void SendMail(string address, string subject, string body)
