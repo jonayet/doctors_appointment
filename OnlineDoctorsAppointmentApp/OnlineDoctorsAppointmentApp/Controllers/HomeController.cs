@@ -15,7 +15,7 @@ namespace OnlineDoctorsAppointmentApp.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Mission and Vision of Tomal Info Tech (Pvt.) Ltd.";
             return View();
         }
 
