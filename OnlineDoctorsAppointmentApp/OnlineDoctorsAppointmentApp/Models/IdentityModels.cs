@@ -10,7 +10,7 @@ namespace OnlineDoctorsAppointmentApp.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection")
+            : base("AppDbConnectionString")
         {
         }
     }

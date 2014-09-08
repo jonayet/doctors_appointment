@@ -11,7 +11,6 @@ using OnlineDoctorsAppointmentApp.Models;
 
 namespace OnlineDoctorsAppointmentApp.Controllers
 {
-    [Authorize]
     public class DoctorController : Controller
     {
         private AppDbContext db = new AppDbContext();
