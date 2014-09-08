@@ -53,6 +53,7 @@ namespace OnlineDoctorsAppointmentApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                db.VisitingSessions.Include(v => v.Doctor).Include(v => v.Chamber);
                 db.VisitingSessions.Add(visitingsession);
                 db.SaveChanges();
                 return RedirectToAction("Index");
