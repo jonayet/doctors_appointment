@@ -106,6 +106,10 @@ E:\Rizwan_Rumi_P\doctors_appointment\OnlineDoctorsAppointmentApp\OnlineDoctorsAp
 E:\Rizwan_Rumi_P\doctors_appointment\OnlineDoctorsAppointmentApp\OnlineDoctorsAppointmentApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\Rizwan_Rumi_P\doctors_appointment\OnlineDoctorsAppointmentApp\OnlineDoctorsAppointmentApp\obj\Debug\OnlineDoctorsAppointmentApp.dll
 E:\Rizwan_Rumi_P\doctors_appointment\OnlineDoctorsAppointmentApp\OnlineDoctorsAppointmentApp\obj\Debug\OnlineDoctorsAppointmentApp.pdb
+<<<<<<< HEAD
+E:\Rizwan_Rumi_P\doctors_appointment\OnlineDoctorsAppointmentApp\OnlineDoctorsAppointmentApp\obj\Debug\OnlineDoctorsAppointmentApp.Migrations.InitialCreate.resources
+E:\Rizwan_Rumi_P\doctors_appointment\OnlineDoctorsAppointmentApp\OnlineDoctorsAppointmentApp\obj\Debug\OnlineDoctorsAppointmentApp.csproj.GenerateResource.Cache
+=======
 E:\Rizwan_Rumi_P\doctors_appointment\OnlineDoctorsAppointmentApp\OnlineDoctorsAppointmentApp\obj\Debug\OnlineDoctorsAppointmentApp.csprojResolveAssemblyReference.cache
 D:\newRepo\doctors_appointment\OnlineDoctorsAppointmentApp\OnlineDoctorsAppointmentApp\bin\OnlineDoctorsAppointmentApp.dll.config
 D:\newRepo\doctors_appointment\OnlineDoctorsAppointmentApp\OnlineDoctorsAppointmentApp\bin\OnlineDoctorsAppointmentApp.dll
@@ -162,3 +166,4 @@ D:\newRepo\doctors_appointment\OnlineDoctorsAppointmentApp\OnlineDoctorsAppointm
 D:\newRepo\doctors_appointment\OnlineDoctorsAppointmentApp\OnlineDoctorsAppointmentApp\obj\Debug\OnlineDoctorsAppointmentApp.csprojResolveAssemblyReference.cache
 D:\newRepo\doctors_appointment\OnlineDoctorsAppointmentApp\OnlineDoctorsAppointmentApp\obj\Debug\OnlineDoctorsAppointmentApp.dll
 D:\newRepo\doctors_appointment\OnlineDoctorsAppointmentApp\OnlineDoctorsAppointmentApp\obj\Debug\OnlineDoctorsAppointmentApp.pdb
+>>>>>>> origin/master
