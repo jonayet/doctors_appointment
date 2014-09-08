@@ -74,12 +74,9 @@
     @Scripts.Render("~/bundles/jquery-datetimepicker")
 
     <script>
-        $('#StartTime').datetimepicker({
-        });
-        $('#EndTime').datetimepicker({
-        });
+        $('#StartTime').datetimepicker({ format: 'd/m/Y h:i a' });
+        $('#EndTime').datetimepicker({ format: 'd/m/Y h:i a' });
     </script>
-
 }
 
 

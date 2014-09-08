@@ -1,5 +1,5 @@
 ﻿@using System.Web.Mvc.Html
-@model OnlineDoctorsAppointmentApp.Models.Appointment
+@model IEnumerable<OnlineDoctorsAppointmentApp.Models.Appointment>
 
 @{
     //Layout = null;
@@ -9,55 +9,49 @@
 
 <html>
     <head>
-        <title>Your Appoinment</title>
+        <title>Your Appoinments</title>
     </head>
     <body>
-        <h2>Appointment Details</h2>
+        <h2>Index</h2>
 
         <p>
             @Html.ActionLink("Create New", "Create")
         </p>
-        <div class="form-group">
-            @Html.Label("Doctor's Name:")
-            @ViewBag.doctorName"
-        </div>
-        <div class="form-group">
-            @Html.Label("Appointment Time:")
-            @Model.AppointmentTime
-            
-        </div>
-        
-        
-        <div class="form-group">
-            @Html.Label("Serial No: ")
-            @ViewBag.SerialNo
-        </div>
-        
-        <div class="form-group">
-            @Html.Label("Chamber Address: ")
-            @ViewBag.chamberName
-                
-            
-        </div>
-        
-        <div class="form-group">
-            @Html.Label("Your Name: ")
-            @Model.PatientName
-        </div>
-        <div class="form-group">
-            @Html.Label("Your Email: ")
-            @Model.PatientEmail
-            
-        </div>
-        <div class="form-group">
-            @Html.Label("Your Phone: ")
-            @Model.PatientPhone
-            
-        </div>
-        <div class="form-group">
-            @Html.Label("Your Address: ")
-            @Model.PatientAddress
-        </div>
+
+        <table class="table">
+            <tr>
+                <th>Time</th>
+                <th>Serial No.</th>
+                <th>Patient Name</th>
+                <th>Phone No.</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem=>item.AppointmentTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppointmentId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PatientName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PatientPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PatientEmail)
+        </td>
+        <td>
+            @Html.ActionLink("Details","Index",new {appointmentId=item.AppointmentId})
+        </td>
+    </tr>
+}
+
+        </table>
 
 
     </body>
