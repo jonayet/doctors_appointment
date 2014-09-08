@@ -26,10 +26,19 @@ namespace OnlineDoctorsAppointmentApp
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
+<<<<<<< HEAD
                 "~/Content/bootstrap - datetimepicker.min.css",
                       "~/Content/site.css",
                       "~/Content/justified-nav.css",
                       "~/Content/bootstrap.min.css"));
+=======
+                "~/Content/jquery.datetimepicker.css",
+                "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jquery-datetimepicker").Include(
+                        "~/Scripts/jquery.datetimepicker.js",
+                        "~/Scripts/jquery.js"));
+>>>>>>> 612c5686ae12976bbd0921dc128ba10c9ac79670
         }
     }
 }
