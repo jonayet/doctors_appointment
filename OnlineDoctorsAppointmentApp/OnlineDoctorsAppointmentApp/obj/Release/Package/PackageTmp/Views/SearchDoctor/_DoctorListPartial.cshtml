@@ -1,0 +1,72 @@
+﻿@using OnlineDoctorsAppointmentApp.Models
+@model IEnumerable<OnlineDoctorsAppointmentApp.Models.VisitingSession>
+
+@{
+    ViewBag.Title = "Search Doctor";
+}
+
+<h2>Search Result</h2>
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Doctor.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Doctor.Specialization)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Chamber.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Chamber.Zone)
+        </th>
+        <th>
+            Visiting Time
+        </th>
+        <th>
+            No. Of Available Seat
+        </th>
+        <th>
+            Action
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Doctor.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Doctor.Specialization)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Chamber.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Chamber.Zone)
+            </td>
+                <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @{
+                    int avialableseat = item.MaxNoOfAppointments - item.TotalNoOfAppointments;
+                }
+                 @avialableseat
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.VisitingSessionId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.VisitingSessionId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.VisitingSessionId })*@
+                <input type="button" title="Make Appointment" value="Confirm" onclick="location.href='@Url.Action("Create", "Appointment", new { ChamberId = item.ChamberId, DoctorId = item.DoctorId, VisitingSessionId = item.VisitingSessionId})'" />
+                @*<input id="appointmentButton" type="button" value="Confirm" />*@ 
+            </td>
+        </tr>
+    }
+
+</table>
+

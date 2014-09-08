@@ -1,0 +1,81 @@
+﻿@model IEnumerable<OnlineDoctorsAppointmentApp.Models.Doctor>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Degree)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Specialization)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fee)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Degree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Specialization)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            <img src="@Url.Content("~/Images/" + item.ImagePath)" height=100 width=100 />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fee)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DoctorId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DoctorId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DoctorId })
+        </td>
+    </tr>
+}
+
+</table>

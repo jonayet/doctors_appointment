@@ -1,0 +1,82 @@
+﻿@model OnlineDoctorsAppointmentApp.Models.VisitingSession
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>VisitingSession</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group" >
+            @Html.LabelFor(model => model.StartTime, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StartTime)
+                @*<input type="text" id="StartTime" readonly="readonly"/>*@
+                @Html.ValidationMessageFor(model => model.StartTime)
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.EndTime, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EndTime)
+                @*<input type="text" id="EndTime" readonly="readonly" />*@
+                @Html.ValidationMessageFor(model => model.EndTime)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ChamberId, "Chamber", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ChamberId", String.Empty)
+                @Html.ValidationMessageFor(model => model.ChamberId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DoctorId, "Doctor", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("DoctorId", String.Empty)
+                @Html.ValidationMessageFor(model => model.DoctorId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaxNoOfAppointments, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MaxNoOfAppointments)
+                @Html.ValidationMessageFor(model => model.MaxNoOfAppointments)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery-datetimepicker")
+
+    <script>
+        $('#StartTime').datetimepicker({ format: 'd/m/Y h:i a' });
+        $('#EndTime').datetimepicker({ format: 'd/m/Y h:i a' });
+    </script>
+}
+
+

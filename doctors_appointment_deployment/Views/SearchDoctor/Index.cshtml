@@ -1,0 +1,88 @@
+﻿@using System.Web.Mvc.Html
+@using OnlineDoctorsAppointmentApp.Models
+@model OnlineDoctorsAppointmentApp.Models.VisitingSession
+
+@{
+    ViewBag.Title = "Search Doctor";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DoctorId, "Doctor Name", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("DoctorId", String.Empty)
+                @Html.ValidationMessageFor(model => model.DoctorId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Doctor.Specialization, "Specialization", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("SpecializationId", String.Empty)
+                @Html.ValidationMessageFor(model => model.Doctor.Specialization)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Chamber.ChamberId, "Chamber Name", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ChamberId", String.Empty)
+                @Html.ValidationMessageFor(model => model.ChamberId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Chamber.Zone, "Area", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ChamberZone", String.Empty)
+                @Html.ValidationMessageFor(model => model.Chamber.Zone)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StartTime, "Date", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("dateSearchTextbox")
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Search", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("searchTextbox")
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Search" class="btn btn-default" />
+            </div>
+        </div>
+        
+        @{
+            List<VisitingSession> vsList = ViewBag.doctorList;
+            @Html.Partial("_DoctorListPartial", vsList)
+        }
+
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery-datetimepicker")
+
+    <script>
+        $('#dateSearchTextbox').datetimepicker({ format: 'd/m/Y h:i a' });
+    </script>
+}
