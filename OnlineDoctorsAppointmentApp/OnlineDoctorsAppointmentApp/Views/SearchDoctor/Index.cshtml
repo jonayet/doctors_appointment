@@ -77,3 +77,12 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery-datetimepicker")
+
+    <script>
+        $('#dateSearchTextbox').datetimepicker({format: 'd/m/Y h:i a'});
+    </script>
+}
