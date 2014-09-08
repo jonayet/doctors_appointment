@@ -10,6 +10,7 @@ using OnlineDoctorsAppointmentApp.Models;
 
 namespace OnlineDoctorsAppointmentApp.Controllers
 {
+    [Authorize]
     public class VisitingSessionController : Controller
     {
         private AppDbContext db = new AppDbContext();
