@@ -5,33 +5,6 @@
 }
 
 <h2>Create</h2>
-<head>
-
-
-    <meta charset="utf-8">
-    <title>jQuery UI Datepicker - Default functionality</title>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-    <link rel="stylesheet" href="//jquery-ui-1.8.17.custom/development-bundle/themes/base/jquery.ui.all.css">
-    <link href="~/Content/themes/base/jquery.ui.all.css" rel="stylesheet" />
-    <link href="~/Content/themes/base/jquery.ui.core.css" rel="stylesheet" />
-    <script src="//jquery-ui-1.8.17.custom/development-bundle/jquery-1.7.1.js"></script>
-    <script src="//jquery-ui-1.8.17.custom/development-bundle/ui/jquery.ui.core.js"></script>
-    <link href="~/Content/themes/base/jquery.ui.datepicker.css" rel="stylesheet" />
-    <script src="//jquery-ui-1.8.17.custom/development-bundle/ui/jquery.ui.widget.js"></script>
-    <script src="//jquery-ui-1.8.17.custom/development-bundle/
-            ui/jquery.ui.datepicker.js"></script>
-    <link rel="stylesheet" href="//jquery-ui-1.8.17.custom/development-bundle/demos/demos.css">
-
-
-    <link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery.js"></script>
-    <script src="~/Scripts/jquery.datetimepicker.js"></script>
-
-
-</head>
-
 
 @using (Html.BeginForm()) 
 {
@@ -45,9 +18,8 @@
         <div class="form-group" >
             @Html.LabelFor(model => model.StartTime, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                
-                @*@Html.EditorFor(model => model.StartTime)*@
-                <input type="text" id="StartTime" readonly="readonly"/>
+                @Html.EditorFor(model => model.StartTime)
+                @*<input type="text" id="StartTime" readonly="readonly"/>*@
                 @Html.ValidationMessageFor(model => model.StartTime)
             </div>
         </div>
@@ -55,14 +27,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EndTime, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.EditorFor(model => model.EndTime)*@
-                <input type="text" id="EndTime" readonly="readonly" />
+                @Html.EditorFor(model => model.EndTime)
+                @*<input type="text" id="EndTime" readonly="readonly" />*@
                 @Html.ValidationMessageFor(model => model.EndTime)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ChamberId, "ChamberId", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ChamberId, "Chamber", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("ChamberId", String.Empty)
                 @Html.ValidationMessageFor(model => model.ChamberId)
@@ -70,7 +42,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DoctorId, "DoctorId", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DoctorId, "Doctor", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("DoctorId", String.Empty)
                 @Html.ValidationMessageFor(model => model.DoctorId)
@@ -102,8 +74,10 @@
     @Scripts.Render("~/bundles/jquery-datetimepicker")
 
     <script>
-        $('#StartTime').datetimepicker();
-        $('#EndTime').datetimepicker();
+        $('#StartTime').datetimepicker({
+        });
+        $('#EndTime').datetimepicker({
+        });
     </script>
 
 }

@@ -31,16 +31,23 @@ namespace OnlineDoctorsAppointmentApp.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Create()
+        public ActionResult Create(int? DoctorId, int? ChamberId, int? VisitingSessionId)
         {
-            aDoctor = db.Doctors.Find(1);
-            aChamber = db.Chambers.Find(1);
-            aVisitingSession = db.VisitingSessions.Find(2);
+            aDoctor = db.Doctors.Find(DoctorId);
+            aChamber = db.Chambers.Find(ChamberId);
+            aVisitingSession = db.VisitingSessions.Find(VisitingSessionId);
             ViewBag.SelectedDoctor = aDoctor;
             ViewBag.SelectedChamber = aChamber;
             ViewBag.SelectedVisitingSession = aVisitingSession;
-            ViewBag.AppointmentTime = "02/09/2014 10:00 AM";
-            ViewBag.SerialNo = "SN001";
+
+            TimeSpan timeDiff = aVisitingSession.EndTime - aVisitingSession.StartTime;
+            int servingTime = (int)timeDiff.TotalMinutes;
+            int totalNoOfAppointments =
+                db.Appointments.Count(a => a.VisitingSessionId == aVisitingSession.VisitingSessionId);
+            int timeSlotPerPatient = servingTime/aVisitingSession.MaxNoOfAppointments;
+
+            ViewBag.AppointmentTime = aVisitingSession.StartTime.AddMinutes(totalNoOfAppointments * timeSlotPerPatient);
+            ViewBag.SerialNo = "SN" + totalNoOfAppointments.ToString("000");
             return View();
         }
 
