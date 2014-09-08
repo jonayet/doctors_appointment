@@ -260,10 +260,10 @@
     <Content Include="Views\Chamber\Index.cshtml" />
     <Content Include="Views\SearchDoctor\Index.cshtml" />
     <Content Include="Views\SearchDoctor\_DoctorListPartial.cshtml" />
-    <Content Include="Views\Appointment\Create.cshtml" />
     <Content Include="Views\Appointment\Index.cshtml" />
     <Content Include="Views\SearchDoctor\SearchByDoctorName.cshtml" />
     <Content Include="Views\LoginPanel\Index.cshtml" />
+    <Content Include="Views\Appointment\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -28,19 +28,17 @@ namespace OnlineDoctorsAppointmentApp.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
         public ActionResult Create()
         {
             aDoctor = db.Doctors.Find(1);
             aChamber = db.Chambers.Find(1);
-            aVisitingSession = db.VisitingSessions.Find(1);
+            aVisitingSession = db.VisitingSessions.Find(2);
             ViewBag.SelectedDoctor = aDoctor;
             ViewBag.SelectedChamber = aChamber;
             ViewBag.SelectedVisitingSession = aVisitingSession;
             ViewBag.AppointmentTime = "02/09/2014 10:00 AM";
-
-            Appointment anAppointment = new Appointment();
-            return View(anAppointment);
+            ViewBag.SerialNo = "SN001";
+            return View();
         }
 
         [HttpPost]

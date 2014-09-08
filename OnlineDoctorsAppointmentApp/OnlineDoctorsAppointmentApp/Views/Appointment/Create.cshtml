@@ -1,120 +1,125 @@
 ﻿@model OnlineDoctorsAppointmentApp.Models.Appointment
-@using OnlineDoctorsAppointmentApp.Models;
 
 @{
-    ViewBag.Title = "Create Appoinment";
+    ViewBag.Title = "Create";
 }
 
-<h2>Create Appoinment</h2>
+<h2>Create</h2>
 
-@using (Html.BeginForm("Create", "Appointment", FormMethod.Post))
+
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
+        <h4>Appointment</h4>
+        <hr />
+        @Html.ValidationSummary(true)
         
-        @Html.ValidationSummary(true)        
-
         <div class="form-group">
             @Html.Label("Doctor Name:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @ViewBag.SelectedDoctor.Name
-
             </div>
         </div>
-        
+
         <div class="form-group">
             @Html.Label("Appointment Time:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @ViewBag.AppointmentTime
             </div>
         </div>
-        
+
         <div class="form-group">
             @Html.Label("Serial No:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @ViewBag.SerialNo
             </div>
         </div>
-        
-        @*patient name entry*@
+
         <div class="form-group">
-            @Html.LabelFor(m => m.PatientName, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PatientName, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PatientName)
                 @Html.ValidationMessageFor(model => model.PatientName)
             </div>
         </div>
-        
+
         <div class="form-group">
-            @Html.LabelFor(m => m.Problems, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Problems, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Problems)
+                @Html.TextAreaFor(model => model.Problems)
                 @Html.ValidationMessageFor(model => model.Problems)
             </div>
         </div>
- 
-        @*Patient Phone No entry*@
+
         <div class="form-group">
-            @Html.LabelFor(m => m.PatientPhone, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PatientPhone, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PatientPhone)
                 @Html.ValidationMessageFor(model => model.PatientPhone)
             </div>
         </div>
-        
-        
-        @*patient email entry*@
+
         <div class="form-group">
-            @Html.LabelFor(m => m.PatientEmail, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PatientEmail, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.PatientEmail)
                 @Html.ValidationMessageFor(model => model.PatientEmail)
             </div>
         </div>
-        
-        @*patient Address entry*@
+
         <div class="form-group">
-            @Html.LabelFor(m => m.PatientAddress, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PatientAddress, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PatientAddress)
+                @Html.TextAreaFor(model => model.PatientAddress)
                 @Html.ValidationMessageFor(model => model.PatientAddress)
             </div>
         </div>
-        
-        @*notificaction subscribe textbox*@
+
         <div class="form-group">
-            @Html.LabelFor(m => m.IsNotificationSubscribed, new { @class = "control-label col-md-2" })
-            @Html.CheckBoxFor(model => model.IsNotificationSubscribed)
-            @Html.ValidationMessageFor(model => model.IsNotificationSubscribed)
+            @Html.LabelFor(model => model.IsNotificationSubscribed, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IsNotificationSubscribed)
+                @Html.ValidationMessageFor(model => model.IsNotificationSubscribed)
+            </div>
         </div>
         
         @*passing DoctorId,ChamberId,AppointmentTime (from the search controller) to controller*@
-        <input type="text" name="DoctorId" value='@ViewBag.SelectedDoctor.DoctorId' hidden="hidden" />
-        <input type="text" name="ChamberId" value="@ViewBag.SelectedChamber.ChamberId" hidden="hidden" />
-        <input type="text" name="VisitingSessionId" value="@ViewBag.SelectedVisitingSession.VisitingSessionId" hidden="hidden" />
+        @{
+            int doctorId = 0;
+            int chamberId = 0;
+            int visitingSessionId = 0;
+            if (ViewBag.SelectedDoctor != null)
+            {
+                doctorId = ViewBag.SelectedDoctor.DoctorId;
+            }
+            if (ViewBag.SelectedChamber != null)
+            {
+                chamberId = ViewBag.SelectedChamber.ChamberId;
+            }
+            if (ViewBag.SelectedVisitingSession != null)
+            {
+                visitingSessionId = ViewBag.SelectedVisitingSession.VisitingSessionId;
+            }
+        }
+        <input type="text" name="DoctorId" value='@doctorId' hidden="hidden" />
+        <input type="text" name="ChamberId" value="@chamberId" hidden="hidden" />
+        <input type="text" name="VisitingSessionId" value="@visitingSessionId" hidden="hidden" />
         <input type="text" name="AppointmentTime" value="@ViewBag.AppointmentTime" hidden="hidden" />
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <button onclick="myFunction()">Confirm</button>
-
-                <p id="demo"></p>
-
-                <script>
-                    function myFunction() {
-                        var x;
-                        if (confirm("Are You Sure!") == true) {
-                            x = "You pressed OK!";
-                        } else {
-                            x = "You pressed Cancel!";
-                        }
-                        document.getElementById("demo").innerHTML = x;
-                    }
-                </script>
-
-                @*<input type="submit" value="Create" class="btn btn-default" />*@
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }
