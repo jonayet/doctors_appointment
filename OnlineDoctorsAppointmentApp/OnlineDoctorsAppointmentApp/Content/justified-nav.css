@@ -5,6 +5,7 @@ body {
 .footer {
   padding-top: 40px;
   padding-bottom: 40px;
+  text-align: center;
   margin-top: 40px;
   border-top: 1px solid #eee;
 }
@@ -16,7 +17,7 @@ body {
 }
 .jumbotron .btn {
   padding: 14px 24px;
-  font-size: 21px;
+  font-size: 20px;
 }
 
 /* Customize the nav-justified links to be fill the entire space of the .navbar */
@@ -73,7 +74,7 @@ body {
   }
   .nav-justified > li:last-child > a {
     border-right: 0;
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 3px 3px 0;
   }
 }
 
