@@ -20,6 +20,7 @@ namespace OnlineDoctorsAppointmentApp.Controllers
         private AppDbContext db = new AppDbContext();
 
         // GET: /Doctor/
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(db.Doctors.ToList());
@@ -40,6 +41,7 @@ namespace OnlineDoctorsAppointmentApp.Controllers
             return View(doctor);
         }
 
+        [AllowAnonymous]
         public ActionResult DashBoard()
         {
             var appointmentlist = db.Appointments.ToList();
@@ -47,6 +49,7 @@ namespace OnlineDoctorsAppointmentApp.Controllers
         }
 
         // GET: /Doctor/Create
+        [AllowAnonymous]
         public ActionResult Create()
         {
             return View();

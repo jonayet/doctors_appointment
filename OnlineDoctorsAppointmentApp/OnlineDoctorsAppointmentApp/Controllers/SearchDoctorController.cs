@@ -10,11 +10,13 @@ using OnlineDoctorsAppointmentApp.Models;
 
 namespace OnlineDoctorsAppointmentApp.Controllers
 {
+    [AllowAnonymous]
     public class SearchDoctorController : Controller
     {
         private AppDbContext db = new AppDbContext();
         VisitingSession aSession = new VisitingSession();
         // GET: /SearchDoctor/
+        [AllowAnonymous]
         public ActionResult Index()
         {
             ViewBag.ChamberId = new SelectList(db.Chambers, "ChamberId", "Name");

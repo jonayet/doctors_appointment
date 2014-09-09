@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\MVC\deployment</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\MVC\doctors_appointment\deployment</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
@@ -61,7 +61,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/31/2014 12:42:54</publishTime>
     </File>
     <File Include="bin/OnlineDoctorsAppointmentApp.dll">
-      <publishTime>09/08/2014 22:56:51</publishTime>
+      <publishTime>09/09/2014 22:18:54</publishTime>
     </File>
     <File Include="bin/Owin.dll">
       <publishTime>08/31/2014 12:42:54</publishTime>

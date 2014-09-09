@@ -17,6 +17,7 @@ namespace OnlineDoctorsAppointmentApp.Controllers
 
         //
         // GET: /LoginPanel/
+        [AllowAnonymous]
         public ActionResult Index(string ReturnUrl)
         {
             ViewBag.ReturnUrl = ReturnUrl;
