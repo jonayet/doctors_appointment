@@ -9,6 +9,7 @@ using OnlineDoctorsAppointmentApp.Models;
 
 namespace OnlineDoctorsAppointmentApp.Controllers
 {
+    [Authorize]
     public class AppointmentController : Controller
     {
         
@@ -81,8 +82,6 @@ namespace OnlineDoctorsAppointmentApp.Controllers
             //string script = "<script>alert('Mail Sent Successfully');self.close();</script>";
             //this.ClientScript.RegisterClientScriptBlock(this.GetType(), "sendMail", script);
         }
-
-
 
     }
 }

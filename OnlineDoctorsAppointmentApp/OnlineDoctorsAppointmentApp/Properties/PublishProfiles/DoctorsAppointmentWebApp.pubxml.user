@@ -61,7 +61,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/31/2014 12:42:54</publishTime>
     </File>
     <File Include="bin/OnlineDoctorsAppointmentApp.dll">
-      <publishTime>09/09/2014 22:18:54</publishTime>
+      <publishTime>09/09/2014 23:06:38</publishTime>
     </File>
     <File Include="bin/Owin.dll">
       <publishTime>08/31/2014 12:42:54</publishTime>
@@ -280,7 +280,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/08/2014 00:33:45</publishTime>
     </File>
     <File Include="Views/SearchDoctor/_DoctorListPartial.cshtml">
-      <publishTime>09/08/2014 22:09:59</publishTime>
+      <publishTime>09/09/2014 22:47:07</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>08/31/2014 12:42:54</publishTime>
@@ -313,7 +313,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/31/2014 12:42:54</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/08/2014 22:56:52</publishTime>
+      <publishTime>09/09/2014 23:06:39</publishTime>
     </File>
   </ItemGroup>
 </Project>
