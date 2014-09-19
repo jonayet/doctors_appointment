@@ -9,10 +9,8 @@ using OnlineDoctorsAppointmentApp.Models;
 
 namespace OnlineDoctorsAppointmentApp.Controllers
 {
-    [Authorize]
     public class AppointmentController : Controller
     {
-        
         AppDbContext db = new AppDbContext();
         private Doctor aDoctor;
         private Chamber aChamber;

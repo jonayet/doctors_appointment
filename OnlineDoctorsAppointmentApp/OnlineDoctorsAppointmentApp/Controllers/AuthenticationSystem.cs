@@ -28,6 +28,11 @@ namespace OnlineDoctorsAppointmentApp.Controllers
             return user != null;
         }
 
+        public string GetLoggedUserName(IAuthenticationManager authenticationManager)
+        {
+            return authenticationManager.User.Identity.GetUserName();
+        }
+
         public async Task<bool> CreateWithoutSignInAsync(string userName, string password)
         {
             var user = new ApplicationUser() { UserName = userName };

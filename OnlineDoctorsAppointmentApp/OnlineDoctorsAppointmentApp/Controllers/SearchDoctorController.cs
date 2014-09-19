@@ -35,9 +35,7 @@ namespace OnlineDoctorsAppointmentApp.Controllers
             return View(new VisitingSession());
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Index(int? DoctorId, int? SpecializationId, int? ChamberId, int? ChamberZone, DateTime? dateSearchTextbox, string searchTextbox)
+        public PartialViewResult Search(int? DoctorId, int? SpecializationId, int? ChamberId, int? ChamberZone, DateTime? SearchDate, string SearchText)
         {
             ViewBag.ChamberId = new SelectList(db.Chambers, "ChamberId", "Name");
             ViewBag.ChamberZone = new SelectList(db.Chambers, "ChamberId", "Zone");
@@ -47,36 +45,88 @@ namespace OnlineDoctorsAppointmentApp.Controllers
             List<VisitingSession> visitingSessions = new List<VisitingSession>();
             if (ModelState.IsValid)
             {
-                if (DoctorId != null)
-                {
-                    visitingSessions = db.VisitingSessions.Where(c => c.Doctor.DoctorId == DoctorId).ToList();
-                }
-                else if (SpecializationId != null)
-                {
-                    string specialization = db.Doctors.Find(SpecializationId).Specialization;
-                    visitingSessions = db.VisitingSessions.Where(c => c.Doctor.Specialization.Contains(specialization)).ToList();
-                }
-                else if (ChamberId != null)
-                {
-                    visitingSessions = db.VisitingSessions.Where(c => c.Chamber.ChamberId == ChamberId).ToList();
-                }
-                else if (ChamberZone != null)
-                {
-                    string area = db.Chambers.Find(ChamberZone).Zone;
-                    visitingSessions = db.VisitingSessions.Where(c => c.Chamber.Zone.Contains(area)).ToList();
-                }
-                else if(dateSearchTextbox != null)
-                {
-                    visitingSessions = db.VisitingSessions.Where(c => c.StartTime == dateSearchTextbox).ToList();
-                }
-                else if (searchTextbox != null)
+                if (SearchText != null && SearchText != "")
                 {
                     visitingSessions = db.VisitingSessions.Where(
                         vs =>
-                            vs.Doctor.Name.Contains(searchTextbox) ||
-                            vs.Doctor.Specialization.Contains(searchTextbox)
-                            || vs.Chamber.Name.Contains(searchTextbox) || vs.Chamber.Zone.Contains(searchTextbox))
+                            vs.Doctor.Name.Contains(SearchText) ||
+                            vs.Doctor.Specialization.Contains(SearchText)
+                            || vs.Chamber.Name.Contains(SearchText) || vs.Chamber.Zone.Contains(SearchText))
                         .ToList();
+                }
+                else
+                {
+                    bool IsMultiSearch = false;
+                    if (DoctorId != null)
+                    {
+                        if (visitingSessions.Count > 0)
+                        {
+                            visitingSessions = visitingSessions.Where(c => c.Doctor.DoctorId == DoctorId).ToList();
+                        }
+                        else
+                        {
+                            visitingSessions = db.VisitingSessions.Where(c => c.Doctor.DoctorId == DoctorId).ToList();
+                        }
+                    }
+
+                    if (SpecializationId != null)
+                    {
+                        IsMultiSearch = DoctorId != null || ChamberId != null || ChamberZone != null || SearchDate != null;
+                        string specialization = db.Doctors.Find(SpecializationId).Specialization;
+                        if (visitingSessions.Count > 0)
+                        {
+                            visitingSessions = visitingSessions.Where(c => c.Doctor.Specialization == specialization).ToList();
+                        }
+                        else
+                        {
+                            if (!IsMultiSearch)
+                                visitingSessions = db.VisitingSessions.Where(c => c.Doctor.Specialization == specialization).ToList();
+                        }
+                    }
+
+                    if (ChamberId != null)
+                    {
+                        IsMultiSearch = DoctorId != null || SpecializationId != null || ChamberZone != null || SearchDate != null;
+                        if (visitingSessions.Count > 0)
+                        {
+                            visitingSessions = visitingSessions.Where(c => c.Chamber.ChamberId == ChamberId).ToList();
+                        }
+                        else
+                        {
+                            if (!IsMultiSearch)
+                                visitingSessions = db.VisitingSessions.Where(c => c.Chamber.ChamberId == ChamberId).ToList();
+                        }
+                    }
+
+                    if (ChamberZone != null)
+                    {
+                        IsMultiSearch = DoctorId != null || SpecializationId != null || ChamberId != null || SearchDate != null;
+                        string area = db.Chambers.Find(ChamberZone).Zone;
+                        if (visitingSessions.Count > 0)
+                        {
+                            visitingSessions = visitingSessions.Where(c => c.Chamber.Zone == area).ToList();
+                        }
+                        else
+                        {
+                            if (!IsMultiSearch)
+                                visitingSessions = db.VisitingSessions.Where(c => c.Chamber.Zone == area).ToList();
+                        }
+                    }
+
+                    if (SearchDate != null)
+                    {
+                        IsMultiSearch = DoctorId != null || SpecializationId != null || ChamberId != null || ChamberZone != null;
+                        if (visitingSessions.Count > 0)
+                        {
+
+                            visitingSessions = visitingSessions.Where(c => c.StartTime == SearchDate).ToList();
+                        }
+                        else
+                        {
+                            if (!IsMultiSearch)
+                                visitingSessions = db.VisitingSessions.Where(c => c.StartTime == SearchDate).ToList();
+                        }
+                    } 
                 }
 
                 // get all no of seat avilable
@@ -87,8 +137,8 @@ namespace OnlineDoctorsAppointmentApp.Controllers
 
                 ViewBag.doctorList = visitingSessions;
             }
-            return View();
+            //return PartialView(visitingSessions);
+            return PartialView("~/Views/SearchDoctor/_DoctorListPartial.cshtml", visitingSessions);
         }
-
     }
 }

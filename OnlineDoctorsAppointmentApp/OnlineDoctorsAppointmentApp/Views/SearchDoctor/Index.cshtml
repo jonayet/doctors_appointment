@@ -50,25 +50,27 @@
         <div class="form-group">
             @Html.LabelFor(model => model.StartTime, "Date", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.Editor("dateSearchTextbox")
+                @Html.Editor("SearchDate")
             </div>
         </div>
         <div class="form-group">
             @Html.Label("Search", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.Editor("searchTextbox")
+                @Html.Editor("SearchText")
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Search" class="btn btn-default" />
             </div>
-        </div>
+        </div>*@
         
         @{
             List<VisitingSession> vsList = ViewBag.doctorList;
-            @Html.Partial("_DoctorListPartial", vsList)
+            <div id="doctor-list">
+                @Html.Partial("_DoctorListPartial", vsList)
+            </div>
         }
 
     </div>
@@ -82,7 +84,92 @@
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/jquery-datetimepicker")
 
-    <script>
-        $('#dateSearchTextbox').datetimepicker({ format: 'd/m/Y h:i a' });
+    <script type="text/javascript">
+        $(function() {
+            $('#SearchDate').datetimepicker({ format: 'd/m/Y h:i a' });
+ 
+            $('#DoctorId').change(function () {
+                var DoctorId = $("#DoctorId").val();
+                var SpecializationId = $("#SpecializationId").val();
+                var ChamberId = $("#ChamberId").val();
+                var ChamberZone = $("#ChamberZone").val();
+                $.ajax({
+                    url: 'SearchDoctor/Search',
+                    data: { DoctorId: DoctorId, SpecializationId: SpecializationId, ChamberId: ChamberId, ChamberZone: ChamberZone },
+                    success: function (data) {
+                        document.getElementById("doctor-list").innerHTML = data;
+                    }
+                });
+            });
+
+            $('#SpecializationId').change(function () {
+                var DoctorId = $("#DoctorId").val();
+                var SpecializationId = $("#SpecializationId").val();
+                var ChamberId = $("#ChamberId").val();
+                var ChamberZone = $("#ChamberZone").val();
+                $.ajax({
+                    url: 'SearchDoctor/Search',
+                    data: { DoctorId: DoctorId, SpecializationId: SpecializationId, ChamberId: ChamberId, ChamberZone: ChamberZone },
+                    success: function (data) {
+                        document.getElementById("doctor-list").innerHTML = data;
+                    }
+                });
+            });
+
+            $('#ChamberId').change(function () {
+                var DoctorId = $("#DoctorId").val();
+                var SpecializationId = $("#SpecializationId").val();
+                var ChamberId = $("#ChamberId").val();
+                var ChamberZone = $("#ChamberZone").val();
+                $.ajax({
+                    url: 'SearchDoctor/Search',
+                    data: { DoctorId: DoctorId, SpecializationId: SpecializationId, ChamberId: ChamberId, ChamberZone: ChamberZone },
+                    success: function (data) {
+                        document.getElementById("doctor-list").innerHTML = data;
+                    }
+                });
+            });
+
+            $('#ChamberZone').change(function() {
+                var DoctorId = $("#DoctorId").val();
+                var SpecializationId = $("#SpecializationId").val();
+                var ChamberId = $("#ChamberId").val();
+                var ChamberZone = $("#ChamberZone").val();
+                $.ajax({
+                    url: 'SearchDoctor/Search',
+                    data: { DoctorId: DoctorId, SpecializationId: SpecializationId, ChamberId: ChamberId, ChamberZone: ChamberZone },
+                    success: function (data) {
+                        document.getElementById("doctor-list").innerHTML = data;
+                    }
+                });
+            });
+            
+            $('#SearchDate').change(function () {
+                var DoctorId = $("#DoctorId").val();
+                var SpecializationId = $("#SpecializationId").val();
+                var ChamberId = $("#ChamberId").val();
+                var ChamberZone = $("#ChamberZone").val();
+                var SearchDate = $("#SearchDate").val();
+                $.ajax({
+                    url: 'SearchDoctor/Search',
+                    data: { DoctorId: DoctorId, SpecializationId: SpecializationId, ChamberId: ChamberId, ChamberZone: ChamberZone, SearchDate: SearchDate },
+                    success: function (data) {
+                        document.getElementById("doctor-list").innerHTML = data;
+                    }
+                });
+            });
+            
+            $('#SearchText').on('input', function () {
+                var SearchText = $("#SearchText").val();
+                $.ajax({
+                    url: 'SearchDoctor/Search',
+                    data: { SearchText: SearchText },
+                    success: function (data) {
+                        document.getElementById("doctor-list").innerHTML = data;
+                    }
+                });
+            });
+        });
     </script>
+
 }
